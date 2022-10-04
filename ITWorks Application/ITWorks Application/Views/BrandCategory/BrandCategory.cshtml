@@ -1,0 +1,53 @@
+﻿<div class="container mt-5 pt-4">
+    <section>
+        <h2 class="mb-4">Search</h2>
+
+        <div class="row">
+            <!-- Search Bar -->
+            <div class="col-12 mb-5">
+                @using (Html.BeginForm("Search", "Search", FormMethod.Get))
+                {
+                    <div class="form-group row">
+                        <div class="col-12">
+                            <div class="search-container">
+                                @Html.TextBox("search", ViewBag.SearchValue as string, new { @class = "form-control search-bar", placeholder = "Search here...", autocomplete = "off" })
+                                <button class="btn btn-accent search-btn" type="submit" value="search"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <!--End of Search Bar -->
+            <div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9 pt-4">
+                <!-- Course Details -->
+                <div>
+                    @if (@Model.DeviceCategoryModels.Count == 0)
+                    {
+                        <text>Somewhere over the random, something went horribly wrong</text>
+                    }
+                    else
+                    {
+                        for (int i = 0; i < Model.DeviceCategoryModels.Count; i++)
+                        {
+                            <div class="card article-card mb-5">
+                                <a style="all:unset" href="/BrandCategory/Index/@Model.DeviceCategoryModels[i].FAQDeviceID">
+                                    <img class="image-1"
+                                         src="~/img/image-1.png"
+                                         alt="image 1" />
+                                </a>
+                                <h6>Category: @Model.DeviceCategoryModels[i].FAQCategoryName</h6>
+                            </div>
+                        }
+                    }
+                </div>
+                <!-- End of Course Details -->
+                <!-- Paging -->
+                <div class="pagination">
+
+                </div>
+            </div>
+            <!-- End Right Col -->
+        </div>
+        <!-- End Row -->
+    </section>
+
