@@ -8,8 +8,10 @@ namespace ITWorks_Application.Models
     public class FixModel
     {
         public int FixID { get; set; }
+        public int FixCateogryID { get; set; }
         public int BrandDeviceID { get; set; }
-        public int InstructionID { get; set; }
-        public int Step { get; set; }
+        public string FixTitle { get; set; }
+        public string FixDescription { get; set; }
+
     }
 }

@@ -39,22 +39,22 @@ namespace ITWorks_Application.Controllers
         };
         public static List<BrandDeviceFixCategory> list_of_fixdeviceBrands = new List<BrandDeviceFixCategory>()
         {
-            new BrandDeviceFixCategory { FixCateogryID = 1, BrandDeviceID = 1},
-            new BrandDeviceFixCategory { FixCateogryID = 2, BrandDeviceID = 1},
-            new BrandDeviceFixCategory { FixCateogryID = 3, BrandDeviceID = 1},
-            new BrandDeviceFixCategory { FixCateogryID = 4, BrandDeviceID = 1},
-            new BrandDeviceFixCategory { FixCateogryID = 1, BrandDeviceID = 2},
-            new BrandDeviceFixCategory { FixCateogryID = 2, BrandDeviceID = 2},
-            new BrandDeviceFixCategory { FixCateogryID = 3, BrandDeviceID = 2},
-            new BrandDeviceFixCategory { FixCateogryID = 4, BrandDeviceID = 2},
-            new BrandDeviceFixCategory { FixCateogryID = 1, BrandDeviceID = 3},
-            new BrandDeviceFixCategory { FixCateogryID = 2, BrandDeviceID = 3},
-            new BrandDeviceFixCategory { FixCateogryID = 3, BrandDeviceID = 3},
-            new BrandDeviceFixCategory { FixCateogryID = 4, BrandDeviceID = 3},
-            new BrandDeviceFixCategory { FixCateogryID = 1, BrandDeviceID = 4},
-            new BrandDeviceFixCategory { FixCateogryID = 2, BrandDeviceID = 4},
-            new BrandDeviceFixCategory { FixCateogryID = 3, BrandDeviceID = 4},
-            new BrandDeviceFixCategory { FixCateogryID = 4, BrandDeviceID = 4},
+            new BrandDeviceFixCategory { FixCateogryID = 1, BrandDeviceID = 1 },
+            new BrandDeviceFixCategory { FixCateogryID = 2, BrandDeviceID = 1 },
+            new BrandDeviceFixCategory { FixCateogryID = 3, BrandDeviceID = 1 },
+            new BrandDeviceFixCategory { FixCateogryID = 4, BrandDeviceID = 1 },
+            new BrandDeviceFixCategory { FixCateogryID = 1, BrandDeviceID = 2 },
+            new BrandDeviceFixCategory { FixCateogryID = 2, BrandDeviceID = 2 },
+            new BrandDeviceFixCategory { FixCateogryID = 3, BrandDeviceID = 2 },
+            new BrandDeviceFixCategory { FixCateogryID = 4, BrandDeviceID = 2 },
+            new BrandDeviceFixCategory { FixCateogryID = 1, BrandDeviceID = 3 },
+            new BrandDeviceFixCategory { FixCateogryID = 2, BrandDeviceID = 3 },
+            new BrandDeviceFixCategory { FixCateogryID = 3, BrandDeviceID = 3 },
+            new BrandDeviceFixCategory { FixCateogryID = 4, BrandDeviceID = 3 },
+            new BrandDeviceFixCategory { FixCateogryID = 1, BrandDeviceID = 4 },
+            new BrandDeviceFixCategory { FixCateogryID = 2, BrandDeviceID = 4 },
+            new BrandDeviceFixCategory { FixCateogryID = 3, BrandDeviceID = 4 },
+            new BrandDeviceFixCategory { FixCateogryID = 4, BrandDeviceID = 4 },
         };
         public static List<InstructionModel> list_of_instruction = new List<InstructionModel>()
         {
@@ -63,9 +63,11 @@ namespace ITWorks_Application.Controllers
         };
         public static List<FixModel> list_of_fixModel = new List<FixModel>()
         {
-            new FixModel{ FixID = 1, BrandDeviceID = 1, InstructionID = 1, Step = 1},
-            new FixModel{ FixID = 1, BrandDeviceID = 1, InstructionID = 2, Step = 1}
+            new FixModel{ FixID = 1, BrandDeviceID = 1, FixTitle = "Cannot Charge Android Phone", FixDescription = "Cannot Charge Android Phone"},
+            new FixModel{ FixID = 2, BrandDeviceID = 2, FixTitle = "Cannot Charge iPhone", FixDescription = "Cannot Charge iPhone"}
         };
+        public static List<FixInstructionModel> list_of_fixInstruction = new List<FixInstructionModel>();
+
 
     }
 }

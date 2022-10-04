@@ -10,5 +10,6 @@ namespace ITWorks_Application.ViewModels
     {
         public int FAQDeviceCategoryID { get; set; }
         public List<BrandModel> BrandsModels { get; set; }
+        public List<BrandModel> DoYouMeanList { get; set; }
     }
 }

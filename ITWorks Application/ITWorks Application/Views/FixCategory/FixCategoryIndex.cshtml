@@ -1,4 +1,4 @@
-﻿@model ITWorks_Application.ViewModels.BrandCategoryViewModel
+﻿@model ITWorks_Application.ViewModels.FixCategoryViewModel
 <div class="container mt-5 pt-4">
     <section>
         <h2 class="mb-4">Search</h2>
@@ -6,7 +6,7 @@
         <div class="row">
             <!-- Search Bar -->
             <div class="col-12 mb-5">
-                @using (Html.BeginForm("SearchBrand", "BrandCategory", FormMethod.Get))
+                @using (Html.BeginForm("SearchCategory", "FixCategory", FormMethod.Get))
                 {
                     <div class="form-group row">
                         <div class="col-12">
@@ -22,14 +22,13 @@
             <div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9 pt-4">
                 <!-- Course Details -->
                 <div>
-                    @if (Model.DoYouMeanList != null && @Model.DoYouMeanList.Count > 0)
+                    @if (Model.fixCategoryModels != null && @Model.fixCategoryModels.Count > 0)
                     {
-                        <text>Lets Continue with the troubleshooting: Select one of this brands...</text>
-                        for (int i = 0; i < Model.DoYouMeanList.Count; i++)
+                        for (int i = 0; i < Model.fixCategoryModels.Count; i++)
                         {
                             <div class="card article-card mb-5">
-                                <a style="all:unset" href="RedirectToFixCategory/@Model.DoYouMeanList[i].BrandID/@Model.FAQDeviceCategoryID">
-                                    <h6>Brand: @Model.DoYouMeanList[i].BrandName</h6>
+                                <a style="all:unset" href="/BrandCategory/Index/@Model.fixCategoryModels[i].FixCateogryID/@Model.BrandDeviceID">
+                                    <h6>Cateogry: @Model.fixCategoryModels[i].FixCategoryName</h6>
                                 </a>
                             </div>
                         }
@@ -38,11 +37,9 @@
                 <!-- End of Course Details -->
                 <!-- Paging -->
                 <div class="pagination">
-
                 </div>
             </div>
             <!-- End Right Col -->
         </div>
         <!-- End Row -->
     </section>
-
