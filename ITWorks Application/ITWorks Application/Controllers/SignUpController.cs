@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ITWorks_Application.Controllers
 {
-    public class RegisterController : Controller
+    public class SignUpController : Controller
     {
-        public IActionResult Index()
+        public IActionResult SignUp()
         {
             return View();
         }
