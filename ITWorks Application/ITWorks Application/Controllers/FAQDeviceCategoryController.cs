@@ -21,5 +21,10 @@ namespace ITWorks_Application.Controllers
 
             return View(viewModel);
         }
+
+        public IActionResult DeviceCategory()
+        {
+            return View("DeviceCategory");
+        }
     }
 }
