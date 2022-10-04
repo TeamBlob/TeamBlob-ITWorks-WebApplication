@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>ITWorks_Application</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\Brand\" />
+    <Folder Include="Views\BrandFixCategory\" />
+    <Folder Include="Views\BrandFix\" />
+    <Folder Include="Views\FAQCategory\" />
+    <Folder Include="Views\Chat\" />
+    <Folder Include="Views\Forum\" />
+    <Folder Include="Views\ForumQuestion\" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,334 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+@import url("https://fonts.googleapis.com/css?family=Inter:400,700");
+:root {
+
+    --black: rgba(0, 0, 0, 1);
+    --cerulean: rgba(23, 178, 235, 1);
+    --abbey: rgba(79, 79, 79, 1);
+    --sonic-silver-2: rgba(117, 117, 117, 0.8);
+    --sonic-silver: rgba(117, 117, 117, 1);
+    --font-size-xxs: 16px;
+    --font-size-xs: 20px;
+    --font-size-s: 24px;
+    --font-size-m: 25px;
+    --font-size-l: 36px;
+    --font-size-xl: 60px;
+    --font-family-inter: "Inter";
+}
+.container{
+    max-width: 1440px !important;
+}
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px; /* Vertically center the text there */
+}
+
+
+
+.home-page {
+    background-color: var(--white);
+    border: 1px none;
+    height: 1024px;
+    mix-blend-mode: normal;
+    overflow: hidden;
+    overflow-x: hidden;
+    position: relative;
+    width: 1440px;
+}
+
+.hidden, .hidden * {
+    pointer-events: none;
+    visibility: hidden;
+}
+    
+.its-finally-easy-tog-xVxyAW
+{
+    background-color: transparent;
+    color: var(--sonic-silver);
+    font-family: var(--font-family-inter);
+    font-size: var(--font-size-xl);
+    font-style: normal;
+    font-weight: 700;
+    height: auto;
+    left: 102px;
+    letter-spacing: 0px;
+    line-height: 80px;
+    mix-blend-mode: normal;
+    position: absolute;
+    text-align: left;
+    top: 139px;
+    width: auto;
+}
+
+.image-2-xVxyAW {
+    background-color: transparent;
+    height: 619px;
+    left: 738px;
+    mix-blend-mode: normal;
+    object-fit: cover;
+    position: absolute;
+    top: 116px;
+    width: 615px;
+}
+
+.find-the-best-soluti-xVxyAW {
+    background-color: transparent;
+    color: var(--sonic-silver);
+    font-family: var(--font-family-inter);
+    font-size: var(--font-size-l);
+    font-style: normal;
+    font-weight: 400;
+    height: auto;
+    left: 102px;
+    letter-spacing: 0px;
+    line-height: 60px;
+    mix-blend-mode: normal;
+    position: absolute;
+    text-align: left;
+    top: 411px;
+    width: auto;
+}
+.group-1-xVxyAW {
+    background-color: transparent;
+    cursor: pointer;
+    height: 86px;
+    left: 105px;
+    position: absolute;
+    top: 602px;
+    width: 315px;
+}
+
+.button-u1NoIv {
+    background-color: #17b2eb;
+    border: 1px none;
+    border-radius: 50px;
+    height: 86px;
+    left: 0px;
+    mix-blend-mode: normal;
+    position: absolute;
+    top: 0px;
+    width: 313px;
+}
+
+.get-started-u1Nolv{
+    background-color: transparent;
+    color: var(--white);
+    font-family: var(--font-family-inter);
+    font-size: var(--font-size-l);
+    font-style: normal;
+    font-weight: 400;
+    height: auto;
+    left: 60px;
+    letter-spacing: 0px;
+    line-height: 60px;
+    mix-blend-mode: normal;
+    position: absolute;
+    text-align: left;
+    top: 13px;
+    white-space: nowrap;
+    width: auto;
+}
+
+.nav-bar-xVxyAW {
+    background-color: transparent;
+    border: 1px none;
+    height: 127px;
+    left: 0px;
+    overflow: hidden;
+    position: relative;
+    top: 0px;
+    width: 1440px;
+}
+
+.ask-specialist-EWYZ0Y{
+    background-color: transparent;
+    height: auto;
+    left: 588px;
+    letter-spacing: 0px;
+    line-height: normal;
+    mix-blend-mode: normal;
+    position: absolute;
+    text-align: left;
+    top: 62px;
+    width: auto;
+}
+
+.login-EWYZ0Y {
+    background-color: transparent;
+    height: auto;
+    left: 1168px;
+    letter-spacing: 0px;
+    line-height: normal;
+    mix-blend-mode: normal;
+    position: absolute;
+    text-align: left;
+    top: 62px;
+    width: auto;
+}
+.fix-device-EWYZ0Y {
+    background-color: transparent;
+    height: auto;
+    left: 438px;
+    letter-spacing: 0px;
+    line-height: normal;
+    mix-blend-mode: normal;
+    position: absolute;
+    text-align: left;
+    top: 62px;
+    width: auto;
+}
+.line-1-EWYZ0Y {
+    background-color: transparent;
+    height: 1px;
+    left: 0px;
+    position: absolute;
+    top: 126px;
+    width: 1440px;
+}
+
+.sign-up-EWYZ0Y {
+    background-color: @transparent;
+    cursor: pointer;
+    height: auto;
+    left: 1314px;
+    letter-spacing: 0px;
+    line-height: normal;
+    mix-blend-mode: normal;
+    position: absolute;
+    text-align: left;
+    top: 62px;
+    width: auto;
+}
+
+.image-1-EWYZ0Y {
+    background-color: transparent;
+    height: 65px;
+    left: 40px;
+    mix-blend-mode: normal;
+    object-fit: cover;
+    position: absolute;
+    top: 31px;
+    width: 207px;
+}
+
+.inter-normal-sonic-silver-25px-2 {
+    color: var(--sonic-silver-2);
+    font-family: var(--font-family-inter);
+    font-size: var(--font-size-m);
+    font-weight: 400;
+    font-style: normal;
+}
+
+.inter-normal-sonic-silver-16px {
+    color: var(--sonic-silver);
+    font-family: var(--font-family-inter);
+    font-size: var(--font-size-xxs);
+    font-weight: 400;
+    font-style: normal;
+}
+
+.inter-normal-sonic-silver-25px {
+    color: var(--sonic-silver);
+    font-family: var(--font family-inter);
+    font-size: var(--font-size-m);
+    font-weight: 400;
+    font-style: normal;
+}
+
+.inter-normal-white-36px {
+    color: var(--white);
+    font-family: var(--font-family-inter);
+    font-size: var(--font-size-xl);
+    font-weight: 400;
+    font-style: normal;
+}
+
+.inter-bold-sonic-silver-60px {
+    color: var(--sonic-silver);
+    font-family: var(--font-family-inter);
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    font-style: normal;
+}
+
+.inter-normal-sonie-silver-24px {
+    color: var(--sonic-silver);
+    font-family: var(--font-family-inter);
+    font-size: var(--font-size-s);
+    font-weight: 400;
+    font-style: normal;
+}
+
+.inter-normal-abbey-20px {
+    color: var(--abbey);
+    font-family: var(--font-family=inter);
+    font-size: var(--font-size-xs);
+    font-weight: 400;
+    font-style: normal;
+}
