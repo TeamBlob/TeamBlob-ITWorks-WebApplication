@@ -25,7 +25,7 @@ namespace ITWorks_Application.Controllers
                 brandCategoryViewModel.FAQDeviceCategoryID = DeviceID;
 
             List<BrandDeviceModel> list_of_deviceBrands = FakeDataController.list_of_deviceBrands.Where(x => x.FAQDeviceCategoryID == DeviceID).ToList();
-            brandCategoryViewModel.BrandsModels = FakeDataController.list_of_brands.Union(FakeDataController.list_of_brands.Where(k => !list_of_deviceBrands.Any(x => x.BrandID == k.BrandID))).ToList();
+            brandCategoryViewModel.BrandsModels = FakeDataController.list_of_brands.Intersect(FakeDataController.list_of_brands.Where(k => list_of_deviceBrands.Any(x => x.BrandID == k.BrandID))).ToList();
 
             return View(brandCategoryViewModel);
         }

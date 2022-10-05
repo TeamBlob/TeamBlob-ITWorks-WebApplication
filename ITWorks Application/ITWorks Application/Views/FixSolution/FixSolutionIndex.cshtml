@@ -1,0 +1,30 @@
+﻿@model ITWorks_Application.ViewModels.FixSolutionViewModel
+<div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9 pt-4">
+    <!-- Course Details -->
+    <div>
+        @if (Model.fixInstruction != null && @Model.fixInstruction.Count > 0)
+        {
+            <text> List of Possibile Solution for your @Model.fixModel.FixTitle problem </text>
+            for (int i = 0; i < Model.fixInstruction.Count; i++)
+            {
+                <div class="card article-card mb-5">
+                    <h6> Solution @(i+1):</h6>
+                    <h6>
+                        Title: @Model.fixInstruction[i].InstructionTitle
+                    </h6>
+                    <h6>
+                        Title: @Model.fixInstruction[i].InstructionContent
+                    </h6>
+                </div>
+            }
+        }
+        else
+        {
+            <text> Sorry we do not have a solution for your @Model.fixModel.FixTitle problem </text>
+        }
+    </div>
+    <!-- End of Course Details -->
+    <!-- Paging -->
+    <div class="pagination">
+    </div>
+</div>

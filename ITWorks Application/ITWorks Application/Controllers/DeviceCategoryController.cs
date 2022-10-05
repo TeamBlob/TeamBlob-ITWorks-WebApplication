@@ -11,9 +11,15 @@ namespace ITWorks_Application.Controllers
 {
     public class DeviceCategoryController : Controller
     {
+
         public IActionResult DeviceCategory()
         {
-            return View();
+            FAQDeviceCategoryViewModel viewModel = new FAQDeviceCategoryViewModel
+            {
+                DeviceCategoryModels = FakeDataController.list_of_FAQ_Category
+            };
+
+            return View(viewModel);
         }
     }
 }

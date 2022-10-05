@@ -5,10 +5,10 @@
 
         <div class="row">
             <!-- Search Bar -->
-            <div class="col-12 mb-5">
+            <div class="col-12 mb-5" position: relative;>
                 @using (Html.BeginForm("SearchBrand", "BrandCategory", FormMethod.Get))
                 {
-                    <div class="form-group row">
+                    <div class="form-group row" >
                         <div class="col-12">
                             <div class="search-container">
                                 @Html.TextBox("search", ViewBag.SearchValue as string, new { @class = "form-control search-bar", placeholder = "Search here...", autocomplete = "off" })
@@ -45,4 +45,5 @@
         </div>
         <!-- End Row -->
     </section>
+    </div>
 

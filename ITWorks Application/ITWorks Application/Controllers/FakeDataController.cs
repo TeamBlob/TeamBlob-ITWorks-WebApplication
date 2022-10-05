@@ -11,10 +11,10 @@ namespace ITWorks_Application.Controllers
     {
         public static List<FAQDeviceCategoryModel> list_of_FAQ_Category = new List<FAQDeviceCategoryModel>()
         {
-            new FAQDeviceCategoryModel { FAQDeviceCategoryID = 1, FAQDeviceCategoryName = "Mobile", FAQDeviceCategoryImage = ""},
-            new FAQDeviceCategoryModel { FAQDeviceCategoryID = 2, FAQDeviceCategoryName = "Laptop", FAQDeviceCategoryImage = ""},
-            new FAQDeviceCategoryModel { FAQDeviceCategoryID = 3, FAQDeviceCategoryName = "Printer", FAQDeviceCategoryImage = ""},
-            new FAQDeviceCategoryModel { FAQDeviceCategoryID = 4, FAQDeviceCategoryName = "Home Appliances", FAQDeviceCategoryImage = ""}
+            new FAQDeviceCategoryModel { FAQDeviceCategoryID = 1, FAQDeviceCategoryName = "Mobile", FAQDeviceCategoryImage = "/img/mobile.svg", FAQDeviceCategoryTXTCSS = "mobile-text inter-normal-sonic-silver-24px", FAQDeviceCategoryIMGCSS = "mobile-img"},
+            new FAQDeviceCategoryModel { FAQDeviceCategoryID = 2, FAQDeviceCategoryName = "Laptop", FAQDeviceCategoryImage = "/img/laptop.svg", FAQDeviceCategoryTXTCSS = "laptop-text inter-normal-sonic-silver-24px", FAQDeviceCategoryIMGCSS = "laptop-img"},
+            new FAQDeviceCategoryModel { FAQDeviceCategoryID = 3, FAQDeviceCategoryName = "Printer", FAQDeviceCategoryImage = "/img/printer.svg", FAQDeviceCategoryTXTCSS = "printer-text inter-normal-sonic-silver-24px", FAQDeviceCategoryIMGCSS = "printer-img"},
+            new FAQDeviceCategoryModel { FAQDeviceCategoryID = 4, FAQDeviceCategoryName = "Home Appliances", FAQDeviceCategoryImage = "/img/homeappliance.svg", FAQDeviceCategoryTXTCSS = "home-appliances-text inter-normal-sonic-silver-24px", FAQDeviceCategoryIMGCSS = "homeappliance-img"}
         };
         public static List<BrandModel> list_of_brands = new List<BrandModel>()
         {
@@ -56,17 +56,23 @@ namespace ITWorks_Application.Controllers
             new BrandDeviceFixCategory { FixCateogryID = 3, BrandDeviceID = 4 },
             new BrandDeviceFixCategory { FixCateogryID = 4, BrandDeviceID = 4 },
         };
+        public static List<FixModel> list_of_fixModel = new List<FixModel>()
+        {
+            new FixModel{ FixID = 1, FixCateogryID = 1, BrandDeviceID = 1, FixTitle = "Cannot Charge Android Phone", FixDescription = "Cannot Charge Android Phone"},
+            new FixModel{ FixID = 2, FixCateogryID = 1, BrandDeviceID = 2, FixTitle = "Cannot Charge iPhone", FixDescription = "Cannot Charge iPhone"}
+        };
         public static List<InstructionModel> list_of_instruction = new List<InstructionModel>()
         {
             new InstructionModel { InstructionID = 1, InstructionTitle = "Make sure you use the correct cable", InstructionContent = "Android Phone only can be charged using a Micro USB Connector"},
             new InstructionModel { InstructionID = 2, InstructionTitle = "Make sure you use the correct cable", InstructionContent = "iPhone only can be charged using a Lighting Cable"},
         };
-        public static List<FixModel> list_of_fixModel = new List<FixModel>()
+        public static List<FixInstructionModel> list_of_fixInstruction = new List<FixInstructionModel>()
         {
-            new FixModel{ FixID = 1, BrandDeviceID = 1, FixTitle = "Cannot Charge Android Phone", FixDescription = "Cannot Charge Android Phone"},
-            new FixModel{ FixID = 2, BrandDeviceID = 2, FixTitle = "Cannot Charge iPhone", FixDescription = "Cannot Charge iPhone"}
-        };
-        public static List<FixInstructionModel> list_of_fixInstruction = new List<FixInstructionModel>();
+            new FixInstructionModel { FixID = 1, InstructionID = 1, SolutionStep = 1},
+            new FixInstructionModel { FixID = 1, InstructionID = 2, SolutionStep = 2 },
+            new FixInstructionModel { FixID = 2, InstructionID = 1, SolutionStep = 1 },
+            new FixInstructionModel { FixID = 2, InstructionID = 2, SolutionStep = 2 }
+        }; 
 
 
     }

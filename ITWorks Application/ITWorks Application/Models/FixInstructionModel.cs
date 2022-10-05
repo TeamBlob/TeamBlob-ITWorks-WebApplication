@@ -4,6 +4,6 @@
     {
         public int FixID { get; set; }
         public int InstructionID { get; set; }
-        public int Step { get; set; }
+        public int SolutionStep { get; set; }
     }
 }

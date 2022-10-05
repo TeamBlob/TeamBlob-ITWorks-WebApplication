@@ -1,17 +1,25 @@
-﻿@{
+﻿@model ITWorks_Application.ViewModels.FAQDeviceCategoryViewModel
+@{
     ViewData["Title"] = "Device Category";
 }
 
 <div class="devicecategory screen">
-    <img class="mobile-img" src="~/img/mobile.svg" alt="24 / gadgets / mobile" />
-    <img class="laptop-img" src="~/img/laptop.svg" alt="24 / gadgets / laptop" />
-    <img class="printer-img" src="~/img/printer.svg" alt="24 / basic / printer" />
-    <img class="homeappliance-img" src="~/img/homeappliance.svg" alt="24 / shopping / pos" />
 
-    <div class="laptop-text inter-normal-sonic-silver-24px">Laptop</div>
-    <div class="printer-text inter-normal-sonic-silver-24px">Printer</div>
-    <div class="home-appliances-text inter-normal-sonic-silver-24px">Home Appliances</div>
-    <div class="mobile-text inter-normal-sonic-silver-24px">Mobile</div>
+    @if (@Model.DeviceCategoryModels.Count == 0)
+    {
+        <text>Somewhere over the random, something went horribly wrong</text>
+    }
+    else
+    {
+        for (int i = 0; i < Model.DeviceCategoryModels.Count; i++)
+        {
+            <a style="all:unset" href="@Url.ActionLink("BrandCategory", "BrandCategory", new { DeviceID = @Model.DeviceCategoryModels[i].FAQDeviceCategoryID} )">
+                <img class="@Model.DeviceCategoryModels[i].FAQDeviceCategoryIMGCSS" src="@Model.DeviceCategoryModels[i].FAQDeviceCategoryImage" />
+                <div class="@Model.DeviceCategoryModels[i].FAQDeviceCategoryTXTCSS">@Model.DeviceCategoryModels[i].FAQDeviceCategoryName</div>
+            </a>
+        }
+    }
+
     <div class="what-type-of-device-to-fix">What type of device to fix?</div>
     <div class="or-search-other-topics">Or search other topics</div>
     <div class="search-bar">
