@@ -5,4 +5,8 @@
     <RootNamespace>ITWorks_Application</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\Forum\" />
+  </ItemGroup>
+
 </Project>
