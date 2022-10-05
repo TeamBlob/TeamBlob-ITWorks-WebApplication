@@ -1,14 +1,15 @@
 ﻿@model ITWorks_Application.ViewModels.BrandCategoryViewModel
-<div class="container mt-5 pt-4">
-    <section>
-        <h2 class="mb-4">Search</h2>
 
-        <div class="row">
+<!--<div class="container mt-5 pt-4">
+    <section>-->
+        @*<h2 class="mb-4">Search</h2>*@
+
+        <!--<div class="row">-->
             <!-- Search Bar -->
-            <div class="col-12 mb-5" position: relative;>
+            <!--<div class="col-12 mb-5" position: relative;>
                 @using (Html.BeginForm("SearchBrand", "BrandCategory", FormMethod.Get))
                 {
-                    <div class="form-group row" >
+                    <div class="form-group row">
                         <div class="col-12">
                             <div class="search-container">
                                 @Html.TextBox("search", ViewBag.SearchValue as string, new { @class = "form-control search-bar", placeholder = "Search here...", autocomplete = "off" })
@@ -17,11 +18,11 @@
                         </div>
                     </div>
                 }
-            </div>
+            </div>-->
             <!--End of Search Bar -->
-            <div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9 pt-4">
+            <!--<div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9 pt-4">-->
                 <!-- Course Details -->
-                <div>
+                <!--<div>
                     @if (Model.DoYouMeanList != null && @Model.DoYouMeanList.Count > 0)
                     {
                         <text>Lets Continue with the troubleshooting: Select one of this brands...</text>
@@ -34,16 +35,69 @@
                             </div>
                         }
                     }
-                </div>
+                </div>-->
                 <!-- End of Course Details -->
                 <!-- Paging -->
-                <div class="pagination">
+                <!--<div class="pagination">
 
                 </div>
-            </div>
+            </div>-->
             <!-- End Right Col -->
-        </div>
+        <!--</div>-->
         <!-- End Row -->
-    </section>
+    <!--</section>
+</div>-->
+
+
+<div class="brand screen">
+    <div class="what-brand-is-your-device">What brand is your device?</div>
+    <img class="line-6" src="/img/line-6.svg" alt="Line 6" />
+
+    <div class="brand-search-imgbox">
+        <img class="brand-search-img" src="/img/search.svg" alt="icon" />
     </div>
+   
+    @using (Html.BeginForm("SearchBrand", "BrandCategory", FormMethod.Get))
+    {
+        <div class="enter-the-brand-of-your-device">
+            @Html.TextBox("search", ViewBag.SearchValue as string, new { @class = "brand-search-bar", placeholder = "Enter the brand of your device", autocomplete = "off" })
+            @*<button class="btn btn-accent search-btn" type="submit" value="search"><i class="fas fa-search"></i></button>*@
+        </div>
+        <div class="brand-next">
+            <button class="brand-next-content" type="submit" value="search">
+                <div class="brand-next-text">Next</div>
+            </button>
+        </div>
+    }
+    <div class="example">Example</div>
+    <div class="samsung inter-normal-sonic-silver-25px">Samsung</div>
+    <div class="iphone inter-normal-sonic-silver-25px">iPhone</div>
+    <div class="xiaomi inter-normal-sonic-silver-25px">Xiaomi</div>
+    <div class="huawei inter-normal-sonic-silver-25px">Huawei</div>
+    <div class="back-button">
+        <div class="back-button-content">
+            <img class="back-button-icon" src="/img/back-button-1.svg" alt="Back Button" />
+            <div class="back-text">Back</div>
+        </div>
+    </div>
+    <div class="brand-result">
+        @if (Model.DoYouMeanList != null && @Model.DoYouMeanList.Count > 0)
+        {
+            <div class="inter-normal-sonic-silver-20px">Lets Continue with the troubleshooting: Select one of this brands...</div>
+            for (int i = 0; i < Model.DoYouMeanList.Count; i++)
+            {
+                <div class="card article-card mb-5">
+                    <a style="all:unset" href="RedirectToFixCategory/@Model.DoYouMeanList[i].BrandID/@Model.FAQDeviceCategoryID">
+                        <h6>Brand: @Model.DoYouMeanList[i].BrandName</h6>
+                    </a>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="inter-normal-sonic-silver-16px">No brands found</div>
+        }
+    </div>
+</div>
+
 
