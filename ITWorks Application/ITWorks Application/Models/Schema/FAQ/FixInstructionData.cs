@@ -1,6 +1,6 @@
 ﻿namespace ITWorks_Application.Models
 {
-    public class FixInstructionModel
+    public class FixInstructionData
     {
         public int FixID { get; set; }
         public int InstructionID { get; set; }

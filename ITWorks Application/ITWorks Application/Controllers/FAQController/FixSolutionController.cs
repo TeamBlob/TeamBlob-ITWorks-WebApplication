@@ -20,7 +20,7 @@ namespace ITWorks_Application.Controllers
             fixSolutionViewModel.fixModel = FakeDataController.list_of_fixModel.FirstOrDefault(x => x.FixID == FixID);
             if(fixSolutionViewModel.fixModel != null)
             {
-                List<FixInstructionModel> fixInstructionModels = FakeDataController.list_of_fixInstruction.Where(x => x.FixID == FixID).ToList();
+                List<FixInstructionData> fixInstructionModels = FakeDataController.list_of_fixInstruction.Where(x => x.FixID == FixID).ToList();
                 fixSolutionViewModel.fixInstruction = FakeDataController.list_of_instruction.Intersect(FakeDataController.list_of_instruction.Where(k => fixInstructionModels.Any(x => x.InstructionID == k.InstructionID))).ToList();
             }
 

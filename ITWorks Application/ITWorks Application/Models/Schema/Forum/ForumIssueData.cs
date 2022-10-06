@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ITWorks_Application.Models
 {
-    public class ForumIssue
+    public class ForumIssueData
     {
         public int IssueID { get; set; }
         public string IssueName { get; set; }

@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace ITWorks_Application.Models
 {
-    public class ForumBrand
+    public class ForumBrandData
     {
         public int ForumBrandID { get; set; }
-        public int ForumBrandName { get; set; }
+        public string ForumBrandName { get; set; }
     }
 }

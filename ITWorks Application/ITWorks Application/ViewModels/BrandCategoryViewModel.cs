@@ -9,7 +9,7 @@ namespace ITWorks_Application.ViewModels
     public class BrandCategoryViewModel
     {
         public int FAQDeviceCategoryID { get; set; }
-        public List<BrandModel> BrandsModels { get; set; }
-        public List<BrandModel> DoYouMeanList { get; set; }
+        public List<BrandModelData> BrandsModels { get; set; }
+        public List<BrandModelData> DoYouMeanList { get; set; }
     }
 }

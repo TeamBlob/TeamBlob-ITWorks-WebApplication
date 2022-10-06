@@ -31,7 +31,7 @@ namespace ITWorks_Application.Controllers
         {
 
             if (fixCategoryViewModel.searchResults == null)
-                fixCategoryViewModel.searchResults = new List<FixModel>();
+                fixCategoryViewModel.searchResults = new List<FixData>();
 
             if (fixCategoryViewModel.searchResults != null)
                 fixCategoryViewModel.searchResults.Clear();
@@ -52,7 +52,7 @@ namespace ITWorks_Application.Controllers
                 TempData["search"] = search;
 
                 if (fixCategoryViewModel.searchResults == null)
-                    fixCategoryViewModel.searchResults = new List<FixModel>();
+                    fixCategoryViewModel.searchResults = new List<FixData>();
 
                 if (fixCategoryViewModel.searchResults != null)
                     fixCategoryViewModel.searchResults.Clear();

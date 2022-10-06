@@ -5,10 +5,11 @@ using System.Threading.Tasks;
 
 namespace ITWorks_Application.Models
 {
-    public class BrandModel
+    public class BrandDeviceData
     {
+        public int BrandDeviceID { get; set; }
         public int BrandID { get; set; }
-        public string BrandName { get; set; }
-        public string BrandImage { get; set; }
+        public int FAQDeviceCategoryID { get; set; }
+
     }
 }

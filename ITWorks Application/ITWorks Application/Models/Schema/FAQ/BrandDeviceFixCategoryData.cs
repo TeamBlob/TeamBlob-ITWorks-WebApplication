@@ -5,13 +5,9 @@ using System.Threading.Tasks;
 
 namespace ITWorks_Application.Models
 {
-    public class FixModel
+    public class BrandDeviceFixCategoryData
     {
-        public int FixID { get; set; }
         public int FixCateogryID { get; set; }
         public int BrandDeviceID { get; set; }
-        public string FixTitle { get; set; }
-        public string FixDescription { get; set; }
-
     }
 }

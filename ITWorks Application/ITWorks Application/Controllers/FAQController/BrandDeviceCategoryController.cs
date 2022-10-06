@@ -13,8 +13,6 @@ namespace ITWorks_Application.Controllers
     {
         public static BrandCategoryViewModel brandCategoryViewModel { get; set; } // Make into a session
 
-
-
         [Route("BrandCategory/BrandCategory/{DeviceID}")]
         public IActionResult BrandCategory(int DeviceID)
         {
@@ -24,7 +22,7 @@ namespace ITWorks_Application.Controllers
             if (brandCategoryViewModel.FAQDeviceCategoryID != DeviceID)
                 brandCategoryViewModel.FAQDeviceCategoryID = DeviceID;
 
-            List<BrandDeviceModel> list_of_deviceBrands = FakeDataController.list_of_deviceBrands.Where(x => x.FAQDeviceCategoryID == DeviceID).ToList();
+            List<BrandDeviceData> list_of_deviceBrands = FakeDataController.list_of_deviceBrands.Where(x => x.FAQDeviceCategoryID == DeviceID).ToList();
             brandCategoryViewModel.BrandsModels = FakeDataController.list_of_brands.Intersect(FakeDataController.list_of_brands.Where(k => list_of_deviceBrands.Any(x => x.BrandID == k.BrandID))).ToList();
 
             return View(brandCategoryViewModel);

@@ -5,9 +5,7 @@ using System.Threading.Tasks;
 
 namespace ITWorks_Application.Models
 {
-    public class FixCategoryModel
+    public class TechnicalAccountData : AccountData
     {
-        public int FixCateogryID { get; set; }
-        public string FixCategoryName { get; set; }
     }
 }

@@ -6,8 +6,8 @@ namespace ITWorks_Application.ViewModels
     public class FixCategoryViewModel
     {
         public int BrandDeviceID { get; set; }
-        public List<BrandDeviceFixCategory> brandDeviceFixCategories { get; set; }
-        public List<FixCategoryModel> fixCategoryModels { get; set; }
-        public List<FixModel> searchResults { get; set; }
+        public List<BrandDeviceFixCategoryData> brandDeviceFixCategories { get; set; }
+        public List<FixCategoryData> fixCategoryModels { get; set; }
+        public List<FixData> searchResults { get; set; }
     }
 }

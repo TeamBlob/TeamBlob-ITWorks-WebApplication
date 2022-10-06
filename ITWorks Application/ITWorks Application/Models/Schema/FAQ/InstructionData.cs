@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ITWorks_Application.Models
 {
-    public class InstructionModel
+    public class InstructionData
     {
         public int InstructionID { get; set; }
         public string InstructionTitle { get; set; }

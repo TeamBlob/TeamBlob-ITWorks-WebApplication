@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 
 namespace ITWorks_Application.Models
 {
-    public class ForumTag
+    public class ForumQuestionVotesData
     {
+        public int QuestionID { get; set; }
+        public int Votes { get; set; }
     }
 }

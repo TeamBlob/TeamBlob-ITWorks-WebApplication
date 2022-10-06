@@ -8,7 +8,7 @@ namespace ITWorks_Application.ViewModels
 {
     public class FixSolutionViewModel
     {
-        public FixModel fixModel { get; set; }
-        public List<InstructionModel> fixInstruction { get; set; }
+        public FixData fixModel { get; set; }
+        public List<InstructionData> fixInstruction { get; set; }
 }
 }

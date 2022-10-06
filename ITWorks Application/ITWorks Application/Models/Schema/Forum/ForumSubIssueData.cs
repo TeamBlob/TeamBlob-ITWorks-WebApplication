@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace ITWorks_Application.Models
 {
-    public class ForumSubIssue
+    public class ForumSubIssueData
     {
         public int IssueID { get; set; }
         public int SubIssueID { get; set; }
-        public int SubIssueTitle { get; set; }
+        public string SubIssueName { get; set; }
     }
 }

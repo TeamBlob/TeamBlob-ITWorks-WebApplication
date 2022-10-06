@@ -81,7 +81,11 @@
         </div>
     </div>
     <div class="brand-result">
-        @if (Model.DoYouMeanList != null && @Model.DoYouMeanList.Count > 0)
+        @if (Model.DoYouMeanList == null)
+        {
+            return;
+        }
+        else if (@Model.DoYouMeanList.Count > 0)
         {
             <div class="inter-normal-sonic-silver-20px">Lets Continue with the troubleshooting: Select one of this brands...</div>
             for (int i = 0; i < Model.DoYouMeanList.Count; i++)

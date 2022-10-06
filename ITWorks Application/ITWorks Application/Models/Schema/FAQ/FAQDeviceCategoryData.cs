@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ITWorks_Application.Models
 {
-    public class FAQDeviceCategoryModel
+    public class FAQDeviceCategoryData
     {
         public int FAQDeviceCategoryID { get; set; }
         public string FAQDeviceCategoryName { get; set; }

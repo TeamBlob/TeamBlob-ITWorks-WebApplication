@@ -1,0 +1,253 @@
+﻿@model ITWorks_Application.ViewModels.ForumMainViewModel
+@{ ViewBag.Title = "Forum"; }
+
+<style>
+    .pagination {
+        text-align: center;
+        justify-content: center;
+        margin: 30px 30px 60px;
+        user-select: none;
+    }
+
+        .pagination li {
+            display: inline-block;
+            margin: 5px;
+            box-shadow: 0 5px 25px rgb(1 1 1 / 10%);
+        }
+
+            .pagination li a {
+                color: #000;
+                text-decoration: none;
+                font-size: 1.2rem;
+                line-height: 45px;
+            }
+
+            .pagination li.active a,
+            li.previous-page a, li.next-page a {
+                color: #fff;
+            }
+
+    .previous-page, .next-page {
+        background-color: #009688;
+        width: 80px;
+        cursor: pointer;
+        transition: 0.3s ease;
+    }
+
+    .previous-page {
+        border-radius: 45px 15px 15px 45px;
+    }
+
+    .next-page {
+        border-radius: 15px 45px 45px 15px;
+    }
+
+    .previous-page:not(.disable):hover {
+        transform: translateX(-5px);
+    }
+
+    .next-page:not(.disable):hover {
+        transform: translateX(5px);
+    }
+
+    .current-page, .dots {
+        background-color: #fff;
+        width: 45px;
+        cursor: pointer;
+        border-radius: 50%;
+        border: 1px solid #009688;
+    }
+
+        .current-page:hover, .dots:hover {
+            background: #009688;
+            transition: 0.3s ease;
+        }
+
+            .current-page:hover a, .dots:hover a {
+                color: #fff;
+            }
+
+    .active {
+        background: #009688;
+    }
+
+    .disable {
+        background: #ccc;
+    }
+</style>
+
+
+<div class="container mt-5 pt-4">
+    <section>
+        <h2 class="mb-4">Search</h2>
+
+        <div class="row">
+            <!-- Search Bar -->
+            <div class="col-12 mb-5">
+                @using (Html.BeginForm("Search", "Search", FormMethod.Get))
+                {
+                    <div class="form-group row">
+                        <div class="col-12">
+                            <div class="search-container">
+                                @Html.TextBox("search", ViewBag.SearchValue as string, new { @class = "form-control search-bar", placeholder = "Search here...", autocomplete = "off" })
+                                <button class="btn btn-accent search-btn" type="submit" value="search"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <!--End of Search Bar -->
+            <!-- Left Col -->
+            <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3">
+                <!-- Filter -->
+                <div class="side-nav pt-4 mr-3">
+                    <h4 class="mb-3">Filter</h4>
+                    <hr class="left-hr" />
+                    <h5>By Polytechnic</h5>
+                    @using (Html.BeginForm("Filter", "Search", FormMethod.Get))
+                    {
+                        <div class="form-check">
+                            @Html.RadioButton("filterSchool", "all", true)
+                            <label class="form-check-label" for="all-years">All</label>
+                        </div>
+                        <div class="form-check">
+                            @Html.RadioButton("filterSchool", "Nanyang Polytechnic")
+                            <label class="form-check-label" for="Nanyang Polytechnic">Nanyang Poly</label>
+                        </div>
+                        <div class="form-check">
+                            @Html.RadioButton("filterSchool", "Ngee Ann Polytechnic")
+                            <label class="form-check-label" for="Ngee Ann Polytechnic">Ngee Ann Poly</label>
+                        </div>
+                        <div class="form-check">
+                            @Html.RadioButton("filterSchool", "Singapore Polytechnic")
+                            <label class="form-check-label" for="Singapore Polytechnic">Singapore Poly</label>
+                        </div>
+                        <div class="form-check">
+                            @Html.RadioButton("filterSchool", "Temasek Polytechnic")
+                            <label class="form-check-label" for="Temasek Polytechnic">Temasek Poly</label>
+                        </div>
+                        <div class="form-check">
+                            @Html.RadioButton("filterSchool", "Republic Polytechnic")
+                            <label class="form-check-label" for="Republic Polytechnic">Republic Poly</label>
+                        </div>
+
+                        <div class="pt-5" style="white-space:nowrap">
+                            <h5>By Subject</h5>
+                            <div class="form-check">
+                                @Html.RadioButton("filterTag", "all", true)
+                                <label class="form-check-label" for="all-years">All</label>
+                            </div>
+                            <div class="form-check">
+                                @Html.RadioButton("filterTag", "Applied Sciences")
+                                <label class="form-check-label" for="Applied Sciences">Applied Sciences</label>
+                            </div>
+                            <div class="form-check">
+                                @Html.RadioButton("filterTag", "Business & Management")
+                                <label class="form-check-label" for="Business & Management">Business & Management</label>
+                            </div>
+                            <div class="form-check">
+                                @Html.RadioButton("filterTag", "Built Environment")
+                                <label class="form-check-label" for="Built Environment">Built Environment</label>
+                            </div>
+                            <div class="form-check">
+                                @Html.RadioButton("filterTag", "Media & Design")
+                                <label class="form-check-label" for="Media & Design">Media & Design</label>
+                            </div>
+                            <div class="form-check">
+                                @Html.RadioButton("filterTag", "Information & Digital Technologies")
+                                <label class="form-check-label" for="Information & Digital Technologies">Information & Digital Tech</label>
+                            </div>
+                            <div class="form-check">
+                                @Html.RadioButton("filterTag", "Engineering")
+                                <label class="form-check-label" for="Engineering">Engineering</label>
+                            </div>
+                            <div class="form-check">
+                                @Html.RadioButton("filterTag", "Humanities")
+                                <label class="form-check-label" for="Humanities">Humanities</label>
+                            </div>
+                            <div class="form-check">
+                                @Html.RadioButton("filterTag", "Health Sciences")
+                                <label class="form-check-label" for="Health Sciences">Health Sciences</label>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <!-- End of Filter -->
+            </div>
+            <!-- End Left Col -->
+
+            <div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9 pt-4">
+                <!-- Course Details -->
+                <!-- <div id="resultsPartialView" style="display:none">-->
+                <div>
+                    @Html.Partial("QuestionListResult")
+                </div>
+                <!-- End of Course Details -->
+            </div>
+            <!-- End Right Col -->
+        </div>
+        <!-- End Row -->
+    </section>
+
+</div>
+
+<script type="text/javascript">
+    //if there is a better way -> delete this
+    $('input[type=radio]').on('change', function () {
+        $(this).closest("form").submit();
+    });
+    function getPageList(totalPages, page, maxLength) {
+        function range(start, end) {
+            return Array.from(Array(end - start + 1), (_, i) => i + start);
+        }
+        var sideWidth = maxLength < 9 ? 1 : 2;
+        var leftWidth = (maxLength - sideWidth * 2 - 3) >> 1;
+        var rightWidth = (maxLength - sideWidth * 2 - 3) >> 1;
+        if (totalPages <= maxLength) {
+            return range(1, totalPages);
+        }
+        if (page <= maxLength - sideWidth - 1 - rightWidth) {
+            return range(1, maxLength - sideWidth - 1).concat(0, range(totalPages - sideWidth + 1, totalPages));
+        }
+        if (page >= totalPages - sideWidth - 1 - rightWidth) {
+            return range(1, sideWidth).concat(0, range(totalPages - sideWidth - 1 - rightWidth - leftWidth, totalPages));
+        }
+        return range(1, sideWidth).concat(0, range(page - leftWidth, page + rightWidth), 0, range(totalPages - sideWidth + 1, totalPages));
+    }
+    $(function () {
+        var numberOfItems = $("#resultsPartialView .card").length;
+        var limitPerPage = 5; //How many card items visible per a page
+        var totalPages = Math.ceil(numberOfItems / limitPerPage);
+        var paginationSize = 9; //How many page elements visible in the pagination
+        var currentPage;
+        function showPage(whichPage) {
+            if (whichPage < 1 || whichPage > totalPages) return false;
+            currentPage = whichPage;
+            $("#resultsPartialView .card").hide().slice((currentPage - 1) * limitPerPage, currentPage * limitPerPage).show();
+            $(".pagination li").slice(1, -1).remove();
+            getPageList(totalPages, currentPage, paginationSize).forEach(item => {
+                $("<li>").addClass("page-item").addClass(item ? "current-page" : "dots")
+                    .toggleClass("active", item == currentPage).append($("<a>")
+                        .attr({ href: "javascript:void(0)" }).text(item || "...")).insertBefore(".next-page");
+            })
+            $(".previous-page").toggleClass("disable", currentPage === 1);
+            $(".next-page").toggleClass("disable", currentPage === totalPages);
+            return true;
+        }
+        $(".pagination").append(
+            $("<li>").addClass("page-item").addClass("previous-page").append($("<a>").attr({ href: "javascript:void(0)" }).text("Prev")),
+            $("<li>").addClass("page-item").addClass("next-page").append($("<a>").attr({ href: "javascript:void(0)" }).text("Next"))
+        );
+        $("#resultsPartialView").show();
+        showPage(1);
+        $(document).on("click", ".pagination li.current-page:not(.active)", function () {
+            return showPage(+$(this).text());
+        });
+        $(".next-page").on("click", function () {
+            return showPage(currentPage + 1);
+        });
+        $(".previous-page").on("click", function () {
+            return showPage(currentPage - 1);
+        });
+    });
+</script>

@@ -1,0 +1,116 @@
+﻿@model ITWorks_Application.ViewModels.ForumQuestionViewModel
+@{ ViewBag.Title = $"Question: {Model.forumQuestionModel.Question.QuestionTitle}"; }
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+    .coursename {
+        margin-top: 1rem !important; /*--> mt-3*/
+        padding: 0 2rem;
+        height: 5rem;
+        color: #009688 !important; /*--> text-dark-accent*/
+        justify-content: center;
+    }
+
+    .schoolname {
+        margin-top: 2rem !important; /*--> mt-4*/
+        padding-right: 2rem;
+        justify-content: flex-end;
+    }
+
+        .schoolname h3 {
+            padding-left: 20px;
+            /*border-left: solid #009688;*/
+            border-left: solid black;
+        }
+
+    .icon-row {
+        text-align: right;
+        padding-right: 1rem;
+        top: 20px;
+    }
+
+        .icon-row .active {
+            color: #fff;
+            background-color: #f7cf3e;
+        }
+</style>
+
+<div class="container mt-4 pt-3">
+    <div class="jumbotron">
+        <section>
+            <div class="row coursename">
+                <h1>@Model.forumQuestionModel.Question.QuestionTitle</h1>
+            </div>
+            <div class="row schoolname">
+                <h6>Asked On: @Model.forumQuestionModel.Question.UploadDateTIme</h6>
+                <h6>Voted: @Model.forumQuestionModel.questionVotes.Votes</h6>
+            </div>
+        </section>
+    </div>
+
+    <hr class="bold">
+    <section>
+        <h2 class="text-dark-accent">Question</h2>
+        <p class="mt-4 mb-4">
+            @Model.forumQuestionModel.Question.QuestionContent
+        </p>
+    </section>
+    <section>
+        @if (Model.questionAnswers != null && Model.questionAnswers.Count() > 0)
+        {
+            for (int i = 0; i < Model.questionAnswers.Count(); i++)
+            {
+                <p class="mt-4 mb-4">
+                    @Model.questionAnswers[i].forumAnswer.AnswerContent
+                </p>
+                <h6>
+                    Answered By: @Model.questionAnswers[i].AccountName
+                </h6>
+                if (Model.questionAnswers[i].answerComments != null && Model.questionAnswers[i].answerComments.Count() > 0)
+                {
+                    for (int j = 0; j < Model.questionAnswers[i].answerComments.Count(); j++)
+                    {
+                        <p class="mt-4 mb-4">
+                            @Model.questionAnswers[i].answerComments[j].CommentContent -
+                            By @Model.questionAnswers[i].answerComments[j].AccountName
+                        </p>
+                    }
+                <p>
+                    <a class="card-link" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        Click here to Comment
+                    </a>
+                    @using (Html.BeginForm("PostComment", "ForumQuestion", FormMethod.Post))
+                    {
+                        <div class="collapse" id="collapseExample">
+                            <div class="card card-body">
+                                <div class="form-group">
+                                    @Html.Hidden("AnswerID", Model.forumQuestionModel.Question.QuestionID)
+                                    @Html.TextArea("CommentContent", ViewBag.SearchValue as string, new { @class = "form-control", rows = "2", placeholder = "Comment Here...", autocomplete = "off" })
+                                </div>
+                                <button type="submit" class="btn btn-primary mb-2">Post Comment</button>
+                            </div>
+                        </div>
+                    }
+
+                </p>
+                }
+
+            }
+        }
+    </section>
+
+
+
+    <h2 class="text-dark-accent">Your Answer</h2>
+
+    @using (Html.BeginForm("PostAnswer", "ForumQuestion", FormMethod.Post))
+    {
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Your Answer Please</label>
+            @Html.Hidden("QuestionID",Model.forumQuestionModel.Question.QuestionID)
+            @Html.TextArea("AnswerContent", ViewBag.SearchValue as string, new { @class="form-control", rows = "3", placeholder = "Answer Here...", autocomplete = "off" })
+        </div>
+        <button type="submit" value ="submit" class="btn btn-primary mb-2">Post Your Answer</button>
+    }
+</div>

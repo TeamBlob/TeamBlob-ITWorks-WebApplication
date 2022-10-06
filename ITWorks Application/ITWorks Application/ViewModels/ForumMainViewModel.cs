@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace ITWorks_Application.ViewModels
 {
-    public class FAQDeviceCategoryViewModel
+    public class ForumMainViewModel
     {
-        public List<FAQDeviceCategoryData> DeviceCategoryModels { get; set; }
+        public List<ForumQuestionModel> forumQuestions { get; set; }
     }
 }

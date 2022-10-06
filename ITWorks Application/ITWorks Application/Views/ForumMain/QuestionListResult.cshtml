@@ -1,0 +1,27 @@
+﻿<!-- Search Result -->
+
+@if (@Model.forumQuestions.Count == 0)
+{
+    <text>Be the first to upload a question</text>
+}
+else
+{
+    for (int i = 0; i < Model.forumQuestions.Count; i++)
+    {
+        <div class="card article-card mb-5">
+            <a style="all:unset" href="/ForumMain/RedirectToQuestion/@Model.forumQuestions[i].Question.QuestionID">
+                <div class="card-body" style="user-select:none; cursor:pointer">
+
+                    <div class="row mb-3">
+                        <div class="col-12 col-lg-9">
+                            <span class="article-type">
+                                @Model.forumQuestions[i].Question.QuestionTitle
+                            </span>
+                        </div>
+                    </div>
+                    <h6>Question: @Model.forumQuestions[i].Question.QuestionContent</h6>
+                </div>
+            </a>
+        </div>
+    }
+}

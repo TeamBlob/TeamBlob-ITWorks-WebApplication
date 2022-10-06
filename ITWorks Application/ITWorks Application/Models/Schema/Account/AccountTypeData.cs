@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 
 namespace ITWorks_Application.Models
 {
-    public class ForumQuestion
+    public class AccountTypeData
     {
+        public int TypeID { get; set; }
+        public string TypeName { get; set; }
     }
 }
