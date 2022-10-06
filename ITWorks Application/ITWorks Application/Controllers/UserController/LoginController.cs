@@ -8,7 +8,7 @@ namespace ITWorks_Application.Controllers
 {
     public class LoginController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Login()
         {
             return View();
         }
