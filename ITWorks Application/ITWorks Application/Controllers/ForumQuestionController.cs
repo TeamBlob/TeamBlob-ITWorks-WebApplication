@@ -50,12 +50,10 @@ namespace ITWorks_Application.Controllers
 
         public IActionResult PostAnswer(string QuestionID, string AnswerContent)
         {
-
             return View(forumQuestionViewModel);
         }
         public IActionResult PostComment(string AnswerID, string CommentContent)
         {
-
             return View(forumQuestionViewModel);
         }
     }
