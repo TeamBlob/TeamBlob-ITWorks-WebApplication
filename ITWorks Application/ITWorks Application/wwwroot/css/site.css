@@ -476,7 +476,15 @@ body {
     top: 82px;
     width: 418px;
 }
-
+.password-content {
+    border: none;
+    outline: none;
+    font-family: var(--font-family-inter);
+    font-size: var(--font-size-s);
+    width: 370px;
+    top: 38px;
+    position: absolute;
+}
 .sign-up-button-content {
     background-color: transparent;
     cursor: pointer;
@@ -551,6 +559,15 @@ body {
     top: -1px;
     width: auto;
 }
+.email-content {
+    border: none;
+    outline: none;
+    font-family: var(--font-family-inter);
+    font-size: var(--font-size-s);
+    width: 420px;
+    top: 38px;
+    position: absolute;
+}
 
 .check-box-content {
     background-color: transparent;
@@ -574,10 +591,11 @@ body {
     top: 0px;
     width: 24px;
 }
+
 .check-mark {
     background-color: transparent;
     height: 24px;
-    left: 51px;
+    left: -1px;
     mix-blend-mode: normal;
     position: absolute;
     top: 0px;
@@ -602,6 +620,55 @@ body {
     width: 520px;
 }
 /*#endregion Sign Up Page*/
+
+/*#region Login Page*/
+.login-button-content {
+    background-color: transparent;
+    cursor: pointer;
+    height: 86px;
+    left: 570px;
+    position: absolute;
+    top: 450px;
+    width: 308px;
+}
+
+.login-button-content:hover .login-button {
+    box-shadow: 5px 10px 18px #888888;
+    transition: ease-in-out 200ms;
+}
+
+.login-text {
+    background-color: transparent;
+    color: var(--white);
+    font-family: var(--font-family-inter);
+    font-size: var(--font-size-l);
+    font-style: normal;
+    font-weight: 400;
+    height: auto;
+    left: 83px;
+    letter-spacing: 0px;
+    line-height: normal;
+    mix-blend-mode: normal;
+    position: absolute;
+    text-align: center;
+    top: 19px;
+    width: 134px;
+}
+
+.login-button {
+    background-color: #17b2eb;
+    border: 1px none;
+    border-radius: 58px;
+    height: 86px;
+    left: 32px;
+    mix-blend-mode: normal;
+    position: absolute;
+    top: 0px;
+    width: 235px;
+}
+/*#endregion Login Page*/
+
+
 
 /*#region Device Category*/
 .devicecategory {
