@@ -284,10 +284,23 @@ body {
     text-decoration: none;
 }
 
-.ask-specialist{
+.ask-specialist {
     background-color: transparent;
     height: auto;
     left: 588px;
+    letter-spacing: 0px;
+    line-height: normal;
+    mix-blend-mode: normal;
+    position: absolute;
+    text-align: left;
+    top: 62px;
+    width: auto;
+}
+
+.forum {
+    background-color: transparent;
+    height: auto;
+    left: 778px;
     letter-spacing: 0px;
     line-height: normal;
     mix-blend-mode: normal;
@@ -668,8 +681,6 @@ body {
 }
 /*#endregion Login Page*/
 
-
-
 /*#region Device Category*/
 .devicecategory {
     background-color: var(--white);
@@ -909,8 +920,14 @@ body {
     mix-blend-mode: normal;
     overflow: hidden;
     overflow-x: hidden;
+    overflow-y: scroll;
     position: relative;
     width: 1440px;
+}
+
+.brand::-webkit-scrollbar {
+    display: none;
+    width: 0;
 }
 
 .what-brand-is-your-device {
@@ -1106,8 +1123,525 @@ body {
 }
 
 .brand-result {
+    top: 896px;
+    position: absolute;
+}
+
+.brand-result-content {
+    top: 105px;
+    left: 223px;
+    width: 994px;
     bottom: 0;
     position: absolute;
 }
 
+.result-title {
+    background-color: transparent;
+    color: var(--sonic-silver);
+    font-family: var(--font-family-inter);
+    font-size: var(--font-size-xl);
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: 0px;
+    top: 30px;
+    width: 1440px;
+    text-align: center;
+    position: relative;
+}
+
+.space {
+    padding-bottom: 200px;
+}
+
+
+.brand-card-container {
+    background-color: transparent;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    top: 60px;
+    left: 50px;
+    width: 894px;
+}
+
+.brand-card {
+    padding: 0px 14px 14px 0px !important;
+    height: 88px;
+    width: 50%;
+}
+
+.brand-card:hover {
+    text-decoration: none;
+}
+
+.brand-card-body {
+    background-color: transparent;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    border: 1px solid var(--sonic-silver);
+    border-radius: 12px;
+    margin-bottom: 3rem !important;
+    cursor: pointer;
+}
+
+.brand-card-body:hover {
+    border-width: 2px;
+}
+
+.brand-card-body-content {
+    font-family: var(--font-family-inter);
+    color: var(--sonic-silver);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+}
+
+.brand-card-icon{
+    height: 42px;
+    padding-left: 5px;
+    padding-right: 25px;
+}
+.brand-card-title {
+    font-weight: 700;
+    font-size: var(--font-size-m);
+    text-align: left;
+}
+
 /*#endregion Brand Category*/
+/*#region Fix Category*/
+.issuecategory {
+    background-color: var(--white);
+    border: 1px none;
+    height: 1024px;
+    mix-blend-mode: normal;
+    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    position: relative;
+    width: 1440px;
+}
+
+.issuecategory::-webkit-scrollbar {
+    display: none;
+    width: 0;
+}
+
+.issuecategory .back-button {
+    background-color: transparent;
+    border: 1px none;
+    height: 29px;
+    left: 40px;
+    position: absolute;
+    top: 847px;
+    width: 103px;
+}
+.i-want-to-fix {
+    background-color: transparent; 
+    color: var(--sonic-silver);
+    font-family: var(--font-family-inter);
+    font-size: var(--font-size-xl); 
+    font-style: normal;
+    font-weight: 700;
+    height: auto;
+    left: 524px;
+    letter-spacing: 0px;
+    line-height: normal;
+    mix-blend-mode: normal;
+    position: absolute;
+    text-align: left;
+    top: 149px;
+    width: auto;
+}
+
+.selection {
+    background-color: transparent;
+    height: 180px;
+    left: 302px;
+    position: absolute;
+    top: 328px;
+    width: 853px;
+}
+.display {
+    background-color: transparent;
+    pointer-events: none;
+    border: 1px none;
+    height: 107px;
+    left: 0px;
+    mix-blend-mode: normal;
+    position: absolute;
+    top: 6px;
+    width: 107px;
+}
+
+.display-icon {
+    background-color: transparent;
+    pointer-events: auto;
+    cursor: pointer;
+    height: 98px;
+    left: 22px;
+    mix-blend-mode: normal;
+    position: absolute;
+    top: 4px;
+    width: 62px;
+}
+
+.display-text {
+    background-color: transparent;
+    cursor: pointer;
+    height: auto;
+    left: 12px;
+    letter-spacing: 0px;
+    line-height: normal;
+    mix-blend-mode: normal;
+    position: absolute;
+    text-align: left;
+    top: 151px;
+    width: auto;
+}
+
+.display:hover ~ .display-text, .display-text:hover {
+    font-weight: 700;
+}
+
+.battery {
+    background-color: transparent;
+    pointer-events: none;
+    border: 1px none;
+    cursor: pointer;
+    height: 119px;
+    left: 239px;
+    mix-blend-mode: normal;
+    position: absolute;
+    top: 0px;
+    width: 119px;
+}
+
+.battery-icon {
+    background-color: transparent;
+    pointer-events: auto;
+    cursor: pointer;
+    height: 60px;
+    left: 5px;
+    mix-blend-mode: normal;
+    position: absolute;
+    top: 30px;
+    width: 109px;
+}
+
+.battery-text {
+    background-color: transparent;
+    cursor: pointer;
+    height: auto;
+    left: 256px;
+    letter-spacing: 0px;
+    line-height: normal;
+    mix-blend-mode: normal;
+    position: absolute;
+    text-align: left;
+    top: 151px;
+    width: auto;
+}
+
+.battery:hover ~ .battery-text, .battery-text:hover {
+    font-weight: 700;
+}
+
+.fixpassword {
+    background-color: transparent;
+    pointer-events: none;
+    border: 1px none;
+    height: 108px;
+    left: 486px;
+    mix-blend-mode: normal;
+    position: absolute;
+    top: 5px;
+    width: 108px;
+}
+
+.fixpassword-icon {
+    background-color: transparent;
+    pointer-events: auto;
+    cursor: pointer;
+    height: 99px;
+    left: 14px;
+    mix-blend-mode: normal;
+    position: absolute;
+    top: 4px;
+    width: 81px;
+}
+
+.fixpassword-text {
+    background-color: transparent;
+    cursor: pointer;
+    height: auto;
+    left: 486px;
+    letter-spacing: 0px;
+    line-height: normal;
+    mix-blend-mode: normal;
+    position: absolute;
+    text-align: left;
+    top: 151px;
+    width: auto;
+}
+
+.fixpassword:hover ~ .fixpassword-text, .fixpassword-text:hover {
+    font-weight: 700;
+}
+
+.camera {
+    background-color: transparent;
+    pointer-events: none;
+    border: 1px none;
+    height: 119px;
+    left: 726px;
+    mix-blend-mode: normal;
+    position: absolute;
+    top: 0px;
+    width: 119px;
+}
+
+.camera-icon {
+    background-color: transparent;
+    pointer-events: auto;
+    cursor: pointer;
+    height: 89px;
+    left: 5px;
+    mix-blend-mode: normal;
+    position: absolute;
+    top: 15px;
+    width: 109px;
+}
+
+.camera-text {
+    background-color: transparent;
+    cursor: pointer;
+    height: auto;
+    left: 741px;
+    letter-spacing: 0px;
+    line-height: normal;
+    mix-blend-mode: normal;
+    position: absolute;
+    text-align: left;
+    top: 151px;
+    width: auto;
+}
+
+.camera:hover ~ .camera-text, .camera-text:hover {
+    font-weight: 700;
+}
+
+.search-bar-type {
+    font-family: var(--font-family-inter);
+    font-size: var(--font-size-s);
+    border: none;
+    outline: none;
+    top: 15px;
+    left:41px;
+    width: 360px;
+    position: absolute;
+}
+
+.search-bar-button {
+    background-color: transparent;
+    border:none;
+    height: 48px;
+    left: 414px;
+    mix-blend-mode: normal;
+    position: absolute;
+    top: 12px;
+    width: 48px;
+}
+
+.search-bar-img {
+    position: relative;
+    top: -1px;
+    left: -6px;
+}
+
+.result-divider {
+    background-color: transparent;
+    height: 1px;
+    left: 200px;
+    position: absolute;
+    top: 0px;
+    width: 1040px;
+}
+
+.search-result {
+    width: 1440px;
+    top: 955px;
+    position: absolute;
+}
+
+.search-result-content {
+    position: relative;
+    left: 302px;
+    top: 70px;
+    width: 853px;
+}
+/*#endregion Fix Category*/
+
+/*#region Solution*/
+.solution {
+    background-color: var(--white);
+    border: 1px none;
+    height: 1024px;
+    mix-blend-mode: normal;
+    overflow: hidden;
+    overflow-x: hidden;
+    position: relative;
+    width: 1440px;
+}
+
+.solution-content {
+    background-color: transparent;
+    border: 1px none;
+    height: 815px;
+    left: 223px;
+    overflow: hidden;
+    overflow-y: scroll;
+    position: absolute;
+    top: 95px;
+    width: 994px;
+}
+
+.solution-content::-webkit-scrollbar {
+    display: none;
+    width: 0;
+}
+
+.solution-title {
+    background-color: transparent;
+    height: auto;
+    left: 0px;
+    letter-spacing: 0px;
+    line-height: normal;
+    mix-blend-mode: normal;
+    position: absolute;
+    text-align: center;
+    top: 56px;
+    width: 944px;
+}
+
+.fix-title {
+    background-color: transparent;
+    color: var(--sonic-silver);
+    font-family: var(--font-family-inter);
+    font-size: var(--font-size-m);
+    font-style: normal;
+    font-weight: 400;
+    height: auto;
+    left: 0px;
+    letter-spacing: 0px;
+    line-height: normal;
+    mix-blend-mode: normal;
+    position: absolute;
+    text-align: center;
+    top: 153px;
+    width: 944px;
+}
+
+.solution-divider {
+    height: 1px;
+    left: 0px;
+    position: relative;
+    top: 241px;
+    width: 994px;
+}
+
+.solution-card-container {
+    background-color: transparent;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    top: 278px;
+    left: 50px;
+    width: 894px;
+}
+
+.solution-card {
+    padding: 0px 14px 14px 0px !important;
+    height: auto;
+    width: 50%;
+}
+
+.solution-card-body {
+    background-color: transparent;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    border: 1px solid var(--sonic-silver);
+    border-radius: 12px;
+    margin-bottom: 3rem !important;
+    cursor: pointer;
+}
+
+.solution-card-body:hover {
+    border-width: 2px;
+}
+
+.solution-card-body-content {
+    font-family: var(--font-family-inter);
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+}
+
+.solution-card-title {
+    font-weight: 700;
+    padding-bottom: 20px;
+}
+/*#endregion Solution*/
+
+/*#region Post Question*/
+.post-question-button-content {
+    background-color: transparent;
+    cursor: pointer;
+    height: 86px;
+    left: 900px;
+    position: absolute;
+    top: 1100px;
+    width: 308px;
+}
+
+.post-question-button-content:hover .post-question-button {
+    box-shadow: 5px 10px 18px #888888;
+    transition: ease-in-out 200ms;
+}
+
+.post-question-text {
+    background-color: transparent;
+    color: var(--white);
+    font-family: var(--font-family-inter);
+    font-size: var(--font-size-m);
+    font-style: normal;
+    font-weight: 400;
+    height: auto;
+    left: 47px;
+    letter-spacing: 0px;
+    line-height: normal;
+    mix-blend-mode: normal;
+    position: absolute;
+    text-align: center;
+    top: 17px;
+    width: 182px;
+}
+
+.post-question-button {
+    background-color: #17b2eb;
+    border: 1px none;
+    border-radius: 58px;
+    height: 66px;
+    left: 0px;
+    mix-blend-mode: normal;
+    position: absolute;
+    top: 0px;
+    width: 269px;
+}
+
+/*#endregion Post Question*/

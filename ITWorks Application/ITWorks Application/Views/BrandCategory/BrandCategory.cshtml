@@ -1,54 +1,5 @@
 ﻿@model ITWorks_Application.ViewModels.BrandCategoryViewModel
 
-<!--<div class="container mt-5 pt-4">
-    <section>-->
-        @*<h2 class="mb-4">Search</h2>*@
-
-        <!--<div class="row">-->
-            <!-- Search Bar -->
-            <!--<div class="col-12 mb-5" position: relative;>
-                @using (Html.BeginForm("SearchBrand", "BrandCategory", FormMethod.Get))
-                {
-                    <div class="form-group row">
-                        <div class="col-12">
-                            <div class="search-container">
-                                @Html.TextBox("search", ViewBag.SearchValue as string, new { @class = "form-control search-bar", placeholder = "Search here...", autocomplete = "off" })
-                                <button class="btn btn-accent search-btn" type="submit" value="search"><i class="fas fa-search"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                }
-            </div>-->
-            <!--End of Search Bar -->
-            <!--<div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9 pt-4">-->
-                <!-- Course Details -->
-                <!--<div>
-                    @if (Model.DoYouMeanList != null && @Model.DoYouMeanList.Count > 0)
-                    {
-                        <text>Lets Continue with the troubleshooting: Select one of this brands...</text>
-                        for (int i = 0; i < Model.DoYouMeanList.Count; i++)
-                        {
-                            <div class="card article-card mb-5">
-                                <a style="all:unset" href="RedirectToFixCategory/@Model.DoYouMeanList[i].BrandID/@Model.FAQDeviceCategoryID">
-                                    <h6>Brand: @Model.DoYouMeanList[i].BrandName</h6>
-                                </a>
-                            </div>
-                        }
-                    }
-                </div>-->
-                <!-- End of Course Details -->
-                <!-- Paging -->
-                <!--<div class="pagination">
-
-                </div>
-            </div>-->
-            <!-- End Right Col -->
-        <!--</div>-->
-        <!-- End Row -->
-    <!--</section>
-</div>-->
-
-
 <div class="brand screen">
     <div class="what-brand-is-your-device">What brand is your device?</div>
     <img class="line-6" src="/img/line-6.svg" alt="Line 6" />
@@ -56,7 +7,7 @@
     <div class="brand-search-imgbox">
         <img class="brand-search-img" src="/img/search.svg" alt="icon" />
     </div>
-   
+
     @using (Html.BeginForm("SearchBrand", "BrandCategory", FormMethod.Get))
     {
         <div class="enter-the-brand-of-your-device">
@@ -80,28 +31,93 @@
             <div class="back-text">Back</div>
         </div>
     </div>
-    <div class="brand-result">
-        @if (Model.DoYouMeanList == null)
-        {
-            return;
-        }
-        else if (@Model.DoYouMeanList.Count > 0)
-        {
-            <div class="inter-normal-sonic-silver-20px">Lets Continue with the troubleshooting: Select one of this brands...</div>
-            for (int i = 0; i < Model.DoYouMeanList.Count; i++)
-            {
-                <div class="card article-card mb-5">
-                    <a style="all:unset" href="RedirectToFixCategory/@Model.DoYouMeanList[i].BrandID/@Model.FAQDeviceCategoryID">
-                        <h6>Brand: @Model.DoYouMeanList[i].BrandName</h6>
-                    </a>
-                </div>
-            }
-        }
-        else
-        {
-            <div class="inter-normal-sonic-silver-16px">No brands found</div>
-        }
-    </div>
+
+
+    @if (Model.DoYouMeanList == null)
+    {
+        return;
+    }
+    else
+    {
+        <div class="brand-result space">
+            <img class="result-divider" src="/img/line-1.svg" />
+            <div class="result-title">Select one of these brand(s)...</div>
+            <div class="brand-result-content">
+                @if (@Model.DoYouMeanList.Count > 0)
+                {
+                <div class="brand-card-container">
+                    @for (int i = 0; i < Model.DoYouMeanList.Count; i++)
+                    {
+                        <a class="brand-card" href="RedirectToFixCategory/@Model.DoYouMeanList[i].BrandID/@Model.FAQDeviceCategoryID">
+                                <div class="brand-card-body">
+                                    <div class="brand-card-body-content">
+
+                                        <img class="brand-card-icon" src="@Model.DoYouMeanList[i].BrandImage" />
+                                        <div class="brand-card-title">@Model.DoYouMeanList[i].BrandName</div>
+
+                                    </div>
+                                </div>
+                        </a>
+                    }
+                    </div>
+                }
+                else
+                {
+                    <img class="result-divider" src="/img/line-1.svg" />
+                    <div class="result-title">No brands found</div>
+                }
+            </div>
+        </div>
+    }
+
+
 </div>
 
 
+<!--<div class="container mt-5 pt-4">
+    <section>-->
+@*<h2 class="mb-4">Search</h2>*@
+
+<!--<div class="row">-->
+<!-- Search Bar -->
+<!--<div class="col-12 mb-5" position: relative;>
+    @using (Html.BeginForm("SearchBrand", "BrandCategory", FormMethod.Get))
+    {
+        <div class="form-group row">
+            <div class="col-12">
+                <div class="search-container">
+                    @Html.TextBox("search", ViewBag.SearchValue as string, new { @class = "form-control search-bar", placeholder = "Search here...", autocomplete = "off" })
+                    <button class="btn btn-accent search-btn" type="submit" value="search"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+    }
+</div>-->
+<!--End of Search Bar -->
+<!--<div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9 pt-4">-->
+<!-- Course Details -->
+<!--<div>
+    @if (Model.DoYouMeanList != null && @Model.DoYouMeanList.Count > 0)
+    {
+        <text>Lets Continue with the troubleshooting: Select one of this brands...</text>
+        for (int i = 0; i < Model.DoYouMeanList.Count; i++)
+        {
+            <div class="card article-card mb-5">
+                <a style="all:unset" href="RedirectToFixCategory/@Model.DoYouMeanList[i].BrandID/@Model.FAQDeviceCategoryID">
+                    <h6>Brand: @Model.DoYouMeanList[i].BrandName</h6>
+                </a>
+            </div>
+        }
+    }
+</div>-->
+<!-- End of Course Details -->
+<!-- Paging -->
+<!--<div class="pagination">
+
+    </div>
+</div>-->
+<!-- End Right Col -->
+<!--</div>-->
+<!-- End Row -->
+<!--</section>
+</div>-->

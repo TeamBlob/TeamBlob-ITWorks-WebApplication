@@ -1,30 +1,65 @@
 ﻿@model ITWorks_Application.ViewModels.FixSolutionViewModel
-<div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9 pt-4">
-    <!-- Course Details -->
-    <div>
+
+
+<div class="solution">
+    <div class="solution-content">
         @if (Model.fixInstruction != null && @Model.fixInstruction.Count > 0)
         {
-            <text> List of Possibile Solution for your @Model.fixModel.FixTitle problem </text>
-            for (int i = 0; i < Model.fixInstruction.Count; i++)
-            {
-                <div class="card article-card mb-5">
-                    <h6> Solution @(i+1):</h6>
-                    <h6>
-                        Title: @Model.fixInstruction[i].InstructionTitle
-                    </h6>
-                    <h6>
-                        Title: @Model.fixInstruction[i].InstructionContent
-                    </h6>
+            <div class="solution-title inter-bold-sonic-silver-60px">List of Possible Solution for</div>
+            <div class="fix-title">"@Model.fixModel.FixTitle"</div>
+            <img class="solution-divider" src="~/img/line-3.svg" />
+            <div class="solution-card-container">
+                @for (int i = 0; i < Model.fixInstruction.Count; i++)
+                {
+                <div class="solution-card">
+                    <div class="solution-card-body">
+                        <div class="solution-card-body-content">
+                            <div class="solution-card-title"> Solution @(i+1):</div>
+                            <h6>
+                                Title: @Model.fixInstruction[i].InstructionTitle
+                            </h6>
+                            <h6>
+                                Title: @Model.fixInstruction[i].InstructionContent
+                            </h6>
+                        </div>
+                    </div>
                 </div>
-            }
+                }
+            </div>
         }
         else
         {
             <text> Sorry we do not have a solution for your @Model.fixModel.FixTitle problem </text>
         }
     </div>
-    <!-- End of Course Details -->
-    <!-- Paging -->
-    <div class="pagination">
-    </div>
 </div>
+
+<!--<div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9 pt-4">-->
+<!-- Course Details -->
+<!--<div>
+    @if (Model.fixInstruction != null && @Model.fixInstruction.Count > 0)
+    {
+        <text> List of Possibile Solution for your @Model.fixModel.FixTitle problem </text>
+        for (int i = 0; i < Model.fixInstruction.Count; i++)
+        {
+            <div class="card article-card mb-5">
+                <h6> Solution @(i+1):</h6>
+                <h6>
+                    Title: @Model.fixInstruction[i].InstructionTitle
+                </h6>
+                <h6>
+                    Title: @Model.fixInstruction[i].InstructionContent
+                </h6>
+            </div>
+        }
+    }
+    else
+    {
+        <text> Sorry we do not have a solution for your @Model.fixModel.FixTitle problem </text>
+    }
+</div>-->
+<!-- End of Course Details -->
+<!-- Paging -->
+<!--<div class="pagination">
+    </div>
+</div>-->

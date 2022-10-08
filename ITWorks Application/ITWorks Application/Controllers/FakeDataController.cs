@@ -19,10 +19,10 @@ namespace ITWorks_Application.Controllers
         };
         public static List<BrandModelData> list_of_brands = new List<BrandModelData>()
         {
-            new BrandModelData { BrandID = 1, BrandName = "Apple", BrandImage = ""},
-            new BrandModelData { BrandID = 1, BrandName = "Samsung", BrandImage = "" },
-            new BrandModelData { BrandID = 1, BrandName = "Xiaomi", BrandImage = "" },
-            new BrandModelData { BrandID = 1, BrandName = "Huawei", BrandImage = "" },
+            new BrandModelData { BrandID = 1, BrandName = "Apple", BrandImage = "/img/apple.svg"},
+            new BrandModelData { BrandID = 1, BrandName = "Samsung", BrandImage = "/img/samsung.svg" },
+            new BrandModelData { BrandID = 1, BrandName = "Xiaomi", BrandImage = "/img/xiaomi.svg" },
+            new BrandModelData { BrandID = 1, BrandName = "Huawei", BrandImage = "/img/huawei.svg" },
         };
         public static List<BrandDeviceData> list_of_deviceBrands = new List<BrandDeviceData>()
         {
@@ -33,34 +33,34 @@ namespace ITWorks_Application.Controllers
         };
         public static List<FixCategoryData> list_of_fixCategory = new List<FixCategoryData>()
         {
-            new FixCategoryData { FixCateogryID = 1, FixCategoryName = "Display" },
-            new FixCategoryData { FixCateogryID = 2, FixCategoryName = "Battery" },
-            new FixCategoryData { FixCateogryID = 3, FixCategoryName = "Password" },
-            new FixCategoryData { FixCateogryID = 4, FixCategoryName = "Camera" },
+            new FixCategoryData { FixCategoryID = 1, FixCategoryName = "Display", FixCategoryContainer = "display", FixCategoryImage = "/img/display.svg", FixCategoryTXTCSS = "display-text inter-normal-sonic-silver-24px", FixCategoryIMGCSS = "display-icon"},
+            new FixCategoryData { FixCategoryID = 2, FixCategoryName = "Battery", FixCategoryContainer = "battery", FixCategoryImage = "/img/battery.svg", FixCategoryTXTCSS = "battery-text inter-normal-sonic-silver-24px", FixCategoryIMGCSS = "battery-icon"},
+            new FixCategoryData { FixCategoryID = 3, FixCategoryName = "Password",FixCategoryContainer = "fixpassword", FixCategoryImage = "/img/fixpassword.svg", FixCategoryTXTCSS = "fixpassword-text inter-normal-sonic-silver-24px", FixCategoryIMGCSS = "fixpassword-icon"},
+            new FixCategoryData { FixCategoryID = 4, FixCategoryName = "Camera", FixCategoryContainer = "camera",  FixCategoryImage = "/img/camera.svg", FixCategoryTXTCSS = "camera-text inter-normal-sonic-silver-24px", FixCategoryIMGCSS = "camera-icon"},
         };
         public static List<BrandDeviceFixCategoryData> list_of_fixdeviceBrands = new List<BrandDeviceFixCategoryData>()
         {
-            new BrandDeviceFixCategoryData { FixCateogryID = 1, BrandDeviceID = 1 },
-            new BrandDeviceFixCategoryData { FixCateogryID = 2, BrandDeviceID = 1 },
-            new BrandDeviceFixCategoryData { FixCateogryID = 3, BrandDeviceID = 1 },
-            new BrandDeviceFixCategoryData { FixCateogryID = 4, BrandDeviceID = 1 },
-            new BrandDeviceFixCategoryData { FixCateogryID = 1, BrandDeviceID = 2 },
-            new BrandDeviceFixCategoryData { FixCateogryID = 2, BrandDeviceID = 2 },
-            new BrandDeviceFixCategoryData { FixCateogryID = 3, BrandDeviceID = 2 },
-            new BrandDeviceFixCategoryData { FixCateogryID = 4, BrandDeviceID = 2 },
-            new BrandDeviceFixCategoryData { FixCateogryID = 1, BrandDeviceID = 3 },
-            new BrandDeviceFixCategoryData { FixCateogryID = 2, BrandDeviceID = 3 },
-            new BrandDeviceFixCategoryData { FixCateogryID = 3, BrandDeviceID = 3 },
-            new BrandDeviceFixCategoryData { FixCateogryID = 4, BrandDeviceID = 3 },
-            new BrandDeviceFixCategoryData { FixCateogryID = 1, BrandDeviceID = 4 },
-            new BrandDeviceFixCategoryData { FixCateogryID = 2, BrandDeviceID = 4 },
-            new BrandDeviceFixCategoryData { FixCateogryID = 3, BrandDeviceID = 4 },
-            new BrandDeviceFixCategoryData { FixCateogryID = 4, BrandDeviceID = 4 },
+            new BrandDeviceFixCategoryData { FixCategoryID = 1, BrandDeviceID = 1 },
+            new BrandDeviceFixCategoryData { FixCategoryID = 2, BrandDeviceID = 1 },
+            new BrandDeviceFixCategoryData { FixCategoryID = 3, BrandDeviceID = 1 },
+            new BrandDeviceFixCategoryData { FixCategoryID = 4, BrandDeviceID = 1 },
+            new BrandDeviceFixCategoryData { FixCategoryID = 1, BrandDeviceID = 2 },
+            new BrandDeviceFixCategoryData { FixCategoryID = 2, BrandDeviceID = 2 },
+            new BrandDeviceFixCategoryData { FixCategoryID = 3, BrandDeviceID = 2 },
+            new BrandDeviceFixCategoryData { FixCategoryID = 4, BrandDeviceID = 2 },
+            new BrandDeviceFixCategoryData { FixCategoryID = 1, BrandDeviceID = 3 },
+            new BrandDeviceFixCategoryData { FixCategoryID = 2, BrandDeviceID = 3 },
+            new BrandDeviceFixCategoryData { FixCategoryID = 3, BrandDeviceID = 3 },
+            new BrandDeviceFixCategoryData { FixCategoryID = 4, BrandDeviceID = 3 },
+            new BrandDeviceFixCategoryData { FixCategoryID = 1, BrandDeviceID = 4 },
+            new BrandDeviceFixCategoryData { FixCategoryID = 2, BrandDeviceID = 4 },
+            new BrandDeviceFixCategoryData { FixCategoryID = 3, BrandDeviceID = 4 },
+            new BrandDeviceFixCategoryData { FixCategoryID = 4, BrandDeviceID = 4 },
         };
         public static List<FixData> list_of_fixModel = new List<FixData>()
         {
-            new FixData{ FixID = 1, FixCateogryID = 1, BrandDeviceID = 1, FixTitle = "Cannot Charge Android Phone", FixDescription = "Cannot Charge Android Phone"},
-            new FixData{ FixID = 2, FixCateogryID = 1, BrandDeviceID = 2, FixTitle = "Cannot Charge iPhone", FixDescription = "Cannot Charge iPhone"}
+            new FixData{ FixID = 1, FixCategoryID = 1, BrandDeviceID = 1, FixTitle = "Cannot Charge Android Phone", FixDescription = "Cannot Charge Android Phone"},
+            new FixData{ FixID = 2, FixCategoryID = 1, BrandDeviceID = 2, FixTitle = "Cannot Charge iPhone", FixDescription = "Cannot Charge iPhone"}
         };
         public static List<InstructionData> list_of_instruction = new List<InstructionData>()
         {

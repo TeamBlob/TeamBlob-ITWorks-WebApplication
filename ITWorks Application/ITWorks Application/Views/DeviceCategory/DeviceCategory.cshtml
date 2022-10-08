@@ -24,14 +24,20 @@
     <div class="or-search-other-topics">Or search other topics</div>
     <div class="search-bar">
         <div class="search-bar-content">
-            <div class="search-bar-border"></div>
-            <img class="device-search-img" src="~/img/search.svg" alt="24 / basic / search" />
-            <div class="search-text inter-normal-sonic-silver-24px">Search Topics</div>
+            <div class="search-bar-border">
+                @*@using (Html.BeginForm("SearchCategory", "FixCategory", FormMethod.Get))
+                {*@
+                    @Html.TextBox("search", ViewBag.SearchValue as string, new { @class = "search-bar-type", placeholder = "Search Topics", autocomplete = "off" })
+                    <button class="search-bar-button" type="submit" value="search">
+                        <img class="search-bar-img" src="~/img/search.svg" />
+                    </button>
+                @*}*@
+            </div>
         </div>
     </div>
     <div class="back-button">
         <div class="back-button-content" onclick="history.back()">
-            <img class="back-button-icon" src="~/img/back-button-1.svg" alt="Back Button" />
+            <img class="back-button-icon" src="~/img/back-button-1.svg" />
             <div class="back-text">Back</div>
         </div>
     </div>

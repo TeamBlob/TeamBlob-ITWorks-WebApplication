@@ -1,11 +1,72 @@
 ﻿@model ITWorks_Application.ViewModels.FixCategoryViewModel
-<div class="container mt-5 pt-4">
+
+<div class="issuecategory screen">
+    <div class="i-want-to-fix">I want to fix...</div>
+    <div class="selection">
+        @if (Model.fixCategoryModels != null && @Model.fixCategoryModels.Count > 0)
+        {
+            for (int i = 0; i < Model.fixCategoryModels.Count; i++)
+            {
+                <a style="all:unset" href="@Url.ActionLink("SelectCategory", "FixCategory", new { BrandDeviceID = @Model.BrandDeviceID.ToString(), FixCategoryID = @Model.fixCategoryModels[i].FixCategoryID.ToString()})">
+                    <div class="@Model.fixCategoryModels[i].FixCategoryContainer">
+                        <img class="@Model.fixCategoryModels[i].FixCategoryIMGCSS" src="@Model.fixCategoryModels[i].FixCategoryImage" />
+                    </div>
+                    <div class="@Model.fixCategoryModels[i].FixCategoryTXTCSS">@Model.fixCategoryModels[i].FixCategoryName</div>
+                </a>
+            }
+        }
+    </div>
+
+    <div class="or-search-other-topics">Or search other topics</div>
+    <div class="search-bar">
+        <div class="search-bar-content">
+            <div class="search-bar-border">
+                @using (Html.BeginForm("SearchCategory", "FixCategory", FormMethod.Get))
+                {
+                    @Html.TextBox("search", ViewBag.SearchValue as string, new { @class = "search-bar-type", placeholder = "Search Topics", autocomplete = "off" })
+                    <button class="search-bar-button" type="submit" value="search">
+                        <img class="search-bar-img" src="~/img/search.svg" />
+                    </button>
+                }
+            </div>
+        </div>
+    </div>
+    @* Search Results *@
+    @if (Model.searchResults != null && @Model.searchResults.Count > 0)
+    {
+        <div class="search-result space">
+            <img class="result-divider" src="/img/line-1.svg"></img>
+            <div class="result-title">Search Results</div>
+            <div class="search-result-content">
+                @for (int i = 0; i < Model.searchResults.Count; i++)
+                {
+                    <div class="card article-card mb-5">
+                        <a style="all:unset" href="/FixSolution/FixSolutionIndex/@Model.searchResults[i].FixID">
+                            <h6>Solution Title: @Model.searchResults[i].FixTitle </h6>
+                            <h6>Solution Description: @Model.searchResults[i].FixDescription </h6>
+                        </a>
+                    </div>
+                }
+
+                </div>
+        </div>
+    }
+
+    <div class="back-button">
+        <div class="back-button-content" onclick="history.back()">
+            <img class="back-button-icon" src="~/img/back-button-1.svg" />
+            <div class="back-text">Back</div>
+        </div>
+    </div>
+</div>
+
+<!--<div class="container mt-5 pt-4">
     <section>
         <h2 class="mb-4">Search</h2>
 
-        <div class="row">
+        <div class="row">-->
             <!-- Search Bar -->
-            <div class="col-12 mb-5">
+            <!--<div class="col-12 mb-5">
                 @using (Html.BeginForm("SearchCategory", "FixCategory", FormMethod.Get))
                 {
                     <div class="form-group row">
@@ -17,18 +78,18 @@
                         </div>
                     </div>
                 }
-            </div>
+            </div>-->
             <!--End of Search Bar -->
-            <div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9 pt-4">
+            <!--<div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9 pt-4">-->
                 <!-- Course Details -->
-                <div>
+                <!--<div>
                     @if (Model.fixCategoryModels != null && @Model.fixCategoryModels.Count > 0)
                     {
                         for (int i = 0; i < Model.fixCategoryModels.Count; i++)
                         {
                             <div class="card article-card mb-5">
-                                <a style="all:unset" href="@Url.ActionLink("SelectCategory", "FixCategory", new { BrandDeviceID = @Model.BrandDeviceID.ToString(), FixCategoryID = @Model.fixCategoryModels[i].FixCateogryID.ToString()})">
-                                    <h6>Cateogry: @Model.fixCategoryModels[i].FixCategoryName</h6>
+                                <a style="all:unset" href="@Url.ActionLink("SelectCategory", "FixCategory", new { BrandDeviceID = @Model.BrandDeviceID.ToString(), FixCategoryID = @Model.fixCategoryModels[i].FixCategoryID.ToString()})">
+                                    <h6>Category: @Model.fixCategoryModels[i].FixCategoryName</h6>
                                 </a>
                             </div>
                         }
@@ -46,14 +107,16 @@
                             </div>
                         }
                     }
-                </div>
+                </div>-->
                 <!-- End of Course Details -->
                 <!-- Paging -->
-                <div class="pagination">
+                <!--<div class="pagination">
                 </div>
-            </div>
+            </div>-->
             <!-- End Right Col -->
-        </div>
+        <!--</div>-->
         <!-- End Row -->
-    </section>
-</div>
+    <!--</section>
+</div>-->
+
+

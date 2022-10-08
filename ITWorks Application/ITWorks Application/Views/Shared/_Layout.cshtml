@@ -39,29 +39,34 @@
                          alt="image 1" />
                     </a>
 
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="fix-device inter-normal-abbey-20px">
-                            @*<a asp-area="" asp-controller="FAQDeviceCategory" asp-action="FAQDeviceCategory">*@
-                            <a asp-area="" asp-controller="DeviceCategory" asp-action="DeviceCategory">
-                                Fix Device
-                            </a>
-                        </li>
-                        <li class="ask-specialist inter-normal-abbey-20px">
-                            <a asp-area="" asp-controller="Home" asp-action="Index">
-                                Ask Specialist
-                            </a>
-                        </li>
-                        <li class="login inter-normal-abbey-20px">
-                            <a asp-area="" asp-controller="Login" asp-action="Login">
-                                Login
-                            </a>
-                        </li>
-                        <li class="sign-up inter-normal-abbey-20px">
-                            <a asp-area="" asp-controller="SignUp" asp-action="SignUp">
-                                Sign Up
-                            </a>
-                        </li>
-                    </ul>
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="fix-device inter-normal-abbey-20px">
+                        @*<a asp-area="" asp-controller="FAQDeviceCategory" asp-action="FAQDeviceCategory">*@
+                        <a asp-area="" asp-controller="DeviceCategory" asp-action="DeviceCategory">
+                            Fix Device
+                        </a>
+                    </li>
+                    <li class="ask-specialist inter-normal-abbey-20px">
+                        <a asp-area="" asp-controller="Home" asp-action="Index">
+                            Ask Specialist
+                        </a>
+                    </li>
+                    <li class="forum inter-normal-abbey-20px">
+                        <a asp-area="" asp-controller="ForumMain" asp-action="ForumMainIndex">
+                            Forum
+                        </a>
+                    </li>
+                    <li class="login inter-normal-abbey-20px">
+                        <a asp-area="" asp-controller="Login" asp-action="Login">
+                            Login
+                        </a>
+                    </li>
+                    <li class="sign-up inter-normal-abbey-20px">
+                        <a asp-area="" asp-controller="SignUp" asp-action="SignUp">
+                            Sign Up
+                        </a>
+                    </li>
+                </ul>
             </div>
             @RenderBody()
         </main>

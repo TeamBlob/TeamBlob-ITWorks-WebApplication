@@ -7,7 +7,7 @@ namespace ITWorks_Application.Models
 {
     public class BrandDeviceFixCategoryData
     {
-        public int FixCateogryID { get; set; }
+        public int FixCategoryID { get; set; }
         public int BrandDeviceID { get; set; }
     }
 }

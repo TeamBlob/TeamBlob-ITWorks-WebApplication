@@ -22,7 +22,7 @@ namespace ITWorks_Application.Controllers
                     fixCategoryViewModel.BrandDeviceID = BrandDeviceID;
 
                 fixCategoryViewModel.brandDeviceFixCategories = FakeDataController.list_of_fixdeviceBrands.Where(x => x.BrandDeviceID == fixCategoryViewModel.BrandDeviceID).ToList();
-                fixCategoryViewModel.fixCategoryModels = FakeDataController.list_of_fixCategory.Intersect(FakeDataController.list_of_fixCategory.Where(k => fixCategoryViewModel.brandDeviceFixCategories.Any(x => x.FixCateogryID == k.FixCateogryID))).ToList();
+                fixCategoryViewModel.fixCategoryModels = FakeDataController.list_of_fixCategory.Intersect(FakeDataController.list_of_fixCategory.Where(k => fixCategoryViewModel.brandDeviceFixCategories.Any(x => x.FixCategoryID == k.FixCategoryID))).ToList();
             }
 
             return View(fixCategoryViewModel);
@@ -37,7 +37,7 @@ namespace ITWorks_Application.Controllers
                 fixCategoryViewModel.searchResults.Clear();
 
 
-            fixCategoryViewModel.searchResults.AddRange(FakeDataController.list_of_fixModel.Where(x => x.BrandDeviceID == Convert.ToInt32(BrandDeviceID) && x.FixCateogryID == Convert.ToInt32(FixCategoryID)));
+            fixCategoryViewModel.searchResults.AddRange(FakeDataController.list_of_fixModel.Where(x => x.BrandDeviceID == Convert.ToInt32(BrandDeviceID) && x.FixCategoryID == Convert.ToInt32(FixCategoryID)));
 
             return View("FixCategoryIndex", fixCategoryViewModel);
         }
