@@ -95,21 +95,22 @@ namespace ITWorks_Application.Controllers
 
         public static List<ForumBrandData> list_of_forumBrands = new List<ForumBrandData>()
         {
-            new ForumBrandData { ForumBrandID = 0, ForumBrandName = "Others" },
             new ForumBrandData { ForumBrandID = 1, ForumBrandName = "Apple"},
             new ForumBrandData { ForumBrandID = 2, ForumBrandName = "Samsung"},
             new ForumBrandData { ForumBrandID = 3, ForumBrandName = "Xiaomi"},
             new ForumBrandData { ForumBrandID = 4, ForumBrandName = "Huawei"},
+            new ForumBrandData { ForumBrandID = 0, ForumBrandName = "Others" },
 
         };
         public static List<ForumIssueData> list_of_forumIssues = new List<ForumIssueData>()
         {
-            new ForumIssueData { IssueID = 0, IssueName = "Others" },
+
             new ForumIssueData { IssueID = 1, IssueName = "Display" },
             new ForumIssueData { IssueID = 2, IssueName = "Battery" },
             new ForumIssueData { IssueID = 3, IssueName = "Password" },
             new ForumIssueData { IssueID = 4, IssueName = "Camera" },
-            new ForumIssueData { IssueID = 4, IssueName = "Others" },
+            new ForumIssueData { IssueID = 0, IssueName = "Others" },
+
         };
         public static List<ForumSubIssueData> list_of_subforumIssues = new List<ForumSubIssueData>()
         {

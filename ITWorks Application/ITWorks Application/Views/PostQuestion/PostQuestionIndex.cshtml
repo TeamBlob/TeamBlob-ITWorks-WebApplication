@@ -1,19 +1,183 @@
-﻿<div class="container mt-4 pt-3">
+﻿@model ITWorks_Application.ViewModels.PostQuestionViewModel
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+          rel="stylesheet" />
+    <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css"
+          rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
 
-    <a class="card-link" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-        Click here to Comment
-    </a>
-    @using (Html.BeginForm("Post", "ForumQuestion", FormMethod.Post))
-    {
-        <div class="collapse" id="collapseExample">
-            <div class="card card-body">
-                <div class="form-group">
-                    @Html.TextArea("CommentContent", ViewBag.SearchValue as string, new { @class = "form-control", rows = "2", placeholder = "Comment Here...", autocomplete = "off" })
+<div class="container mt-4 pt-3">
+
+        <div class="accordion" id="PostAccordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="DeviceHeading">
+                    <button class="accordion-button" id="devicebtn" type="button" data-bs-toggle="collapse" data-bs-target="#devicecollapse" aria-expanded="@Model.DeviceBool" aria-controls="devicecollapse">
+                    @if (!String.IsNullOrEmpty(Model.questionModel.DeviceCategory))
+                        {
+                            @Model.questionModel.DeviceCategory
+                        }
+                        else
+                        {
+                            <p>Select a Device</p>
+                        }
+                    </button>
+                </h2>
+            <div id="devicecollapse" class="accordion-collapse collapse @Model.DeviceExpand.ToString()" aria-labelledby="DeviceHeading" data-bs-parent="#PostAccordion">
+                    <div class="accordion-body">
+                    @if (Model != null && Model.deviceCategoryDatas != null && Model.deviceCategoryDatas.Count > 0)
+                    {
+                        <ul class="list-group list-group-flush">
+                            @for(int i = 0; i < Model.deviceCategoryDatas.Count; i++)
+                            {
+                                <a href="@Url.ActionLink(action: "PostQuestionIndex", values: new { device = Model.deviceCategoryDatas[i].DeviceCategoryName })" class="list-group-item">
+                                    @Model.deviceCategoryDatas[i].DeviceCategoryName
+                                </a>
+                            }
+                        </ul>
+                    }
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-primary mb-2">Post Comment</button>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="BrandHeading">
+                <button class="accordion-button collapsed" id="brandbtn" type="button" data-bs-toggle="collapse" data-bs-target="#brandcollapse" aria-expanded="@Model.BrandBool" aria-controls="brandcollapse">
+                    @if (!String.IsNullOrEmpty(Model.questionModel.Brand))
+                    {
+                        @Model.questionModel.Brand
+                    }
+                    else
+                    {
+                        <p>Select a Brand</p>
+                    }
+                </button>
+                </h2>
+            <div id="brandcollapse" class="accordion-collapse collapse @Model.BrandExpand.ToString()" aria-labelledby="BrandHeading" data-bs-parent="#PostAccordion">
+                    <div class="accordion-body">
+                    @if (Model != null && Model.brandDatas != null && Model.brandDatas.Count > 0)
+                    {
+                        <ul class="list-group list-group-flush">
+                            @for (int i = 0; i < Model.brandDatas.Count; i++)
+                            {
+                                <a href="@Url.ActionLink(action: "PostQuestionIndex", values: new { brand = Model.brandDatas[i].ForumBrandName })" class="list-group-item">
+                                    @Model.brandDatas[i].ForumBrandName
+                                </a>
+                            }
+                        </ul>
+                    }
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="IssueHeading">
+                    <button class="accordion-button collapsed" id="issuebtn" type="button" data-bs-toggle="collapse" data-bs-target="#issuecollapse" aria-expanded="@Model.IssueBool" aria-controls="issuecollapse">
+                        @if (!String.IsNullOrEmpty(Model.questionModel.Issue))
+                        {
+                            @Model.questionModel.Issue
+                        }
+                        else
+                        {
+                            <p>Select an Issue</p>
+                        }
+                    </button>
+                    </h2>
+                <div id="issuecollapse" class="accordion-collapse collapse @Model.IssueExpand.ToString()" aria-labelledby="IssueHeading" data-bs-parent="#PostAccordion">
+                        <div class="accordion-body">
+                        @if (Model != null && Model.issueDatas != null && Model.issueDatas.Count > 0)
+                        {
+                            <ul class="list-group list-group-flush">
+                                @for (int i = 0; i < Model.issueDatas.Count; i++)
+                                {
+                                    <a href="@Url.ActionLink(action: "PostQuestionIndex", values: new { issue = Model.issueDatas[i].IssueName })" class="list-group-item">
+                                        @Model.issueDatas[i].IssueName
+                                    </a>
+                                }
+                            </ul>
+                        }
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="SubIssueHeading">
+                    <button class="accordion-button collapsed" id="subissuebtn" type="button" data-bs-toggle="collapse" data-bs-target="#subissuecollapse" aria-expanded="@Model.SubBool" aria-controls="issuecollapse">
+                        @if (!String.IsNullOrEmpty(Model.questionModel.SubIssue))
+                        {
+                            @Model.questionModel.SubIssue
+                        }
+                        else
+                        {
+                            <p>Select a Sub Issue</p>
+                        }
+                        </button>
+                    </h2>
+                <div id="subissuecollapse" class="accordion-collapse collapse @Model.SubExpand.ToString()" aria-labelledby="SubIssueHeading" data-bs-parent="#PostAccordion">
+                        <div class="accordion-body">
+                        @if (Model != null && Model.subIssueDatas != null && Model.subIssueDatas.Count > 0)
+                        {
+                            <ul class="list-group list-group-flush">
+                                @for (int i = 0; i < Model.subIssueDatas.Count; i++)
+                                {
+                                    <a href="@Url.ActionLink(action: "PostQuestionIndex", values: new { subissue = Model.subIssueDatas[i].SubIssueName })" class="list-group-item">
+                                        @Model.subIssueDatas[i].SubIssueName
+                                    </a>
+                                }
+                            </ul>
+                        }
+                        </div>
+                    </div>
+                </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="SubIssueHeading">
+                    <button class="accordion-button collapsed" id="subissuebtn" type="button" data-bs-toggle="collapse" data-bs-target="#contentcollapse" aria-expanded="@Model.ContentBool" aria-controls="issuecollapse">
+                        Tell us in your own words
+                    </button>
+                </h2>
+                <div id="contentcollapse" class="accordion-collapse collapse @Model.ContentExpand.ToString()" aria-labelledby="SubIssueHeading" data-bs-parent="#PostAccordion">
+                    <div class="accordion-body">
+                        @using (Html.BeginForm("SubmitQuestion", "PostQuestion", FormMethod.Post))
+                        {
+                            <div class="card card-body">
+                                <div class="form-group">
+                                    @Html.TextArea("QuestionTitle", ViewBag.SearchValue as string, new { @class = "form-control", rows = "1", placeholder = "Title: Unable to charge my phone...", autocomplete = "off" })
+                                    @Html.TextArea("QuestionContent", ViewBag.SearchValue as string, new { @class = "form-control", rows = "3", placeholder = "Question Here...", autocomplete = "off" })
+                                </div>
+                                <button type="submit" class="btn btn-primary mb-2">Post Question</button>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
             </div>
         </div>
-    }
-
-
 </div>
+
+<script>
+    const devicebtn = document.getElementById('devicebtn');
+    const brandbtn = document.getElementById('brandbtn');
+    const issuebtn = document.getElementById('issuebtn');
+    const subissuebtn = document.getElementById('subissuebtn');
+
+    const devicecollapse = document.getElementById('devicecollapse');
+    const brandcollapse = document.getElementById('brandcollapse');
+    const issuecollapse = document.getElementById('issuecollapse');
+    const subissuecollapse = document.getElementById('subissuecollapse');
+
+
+    devicebtn.addEventListener('click', function handleClick() {
+        devicebtn.textContent = 'Select a Device';
+    });
+    brandbtn.addEventListener('click', function handleClick() {
+        brandbtn.textContent = 'Select a Brand';
+    });
+    issuebtn.addEventListener('click', function handleClick() {
+        issuebtn.textContent = 'Select an Issue';
+    });
+    subissuebtn.addEventListener('click', function handleClick() {
+        subissuebtn.textContent = 'Select a Sub Issue';
+    });
+
+
+
+</script>
