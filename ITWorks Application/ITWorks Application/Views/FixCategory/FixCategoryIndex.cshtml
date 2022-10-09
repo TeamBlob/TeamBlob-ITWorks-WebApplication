@@ -37,18 +37,23 @@
         <div class="search-result space">
             <img class="result-divider" src="/img/line-1.svg"></img>
             <div class="result-title">Search Results</div>
-            <div class="search-result-content">
-                @for (int i = 0; i < Model.searchResults.Count; i++)
-                {
-                    <div class="card article-card mb-5">
-                        <a style="all:unset" href="/FixSolution/FixSolutionIndex/@Model.searchResults[i].FixID">
-                            <h6>Solution Title: @Model.searchResults[i].FixTitle </h6>
-                            <h6>Solution Description: @Model.searchResults[i].FixDescription </h6>
+            <div class="search-result-content" id="search-result">
+                <div class="search-result-card-container">
+                    @for (int i = 0; i < Model.searchResults.Count; i++)
+                    {
+                        <a class="search-result-card" href="/FixSolution/FixSolutionIndex/@Model.searchResults[i].FixID">
+                            <div class="search-result-card-body">
+                                <div class="search-result-card-body-content">
+                                    
+                                        <div class="search-result-card-title">Solution Title: @Model.searchResults[i].FixTitle </div>
+                                        <h6>Solution Description: @Model.searchResults[i].FixDescription </h6>
+                                    
+                                </div>  
+                            </div>
                         </a>
-                    </div>
-                }
-
+                    }
                 </div>
+            </div>
         </div>
     }
 
@@ -59,6 +64,13 @@
         </div>
     </div>
 </div>
+
+<script>
+    var elementExists = document.getElementById('search-result');
+    if (elementExists) {
+        document.getElementById('search-result').scrollIntoView();
+    }
+</script>
 
 <!--<div class="container mt-5 pt-4">
     <section>

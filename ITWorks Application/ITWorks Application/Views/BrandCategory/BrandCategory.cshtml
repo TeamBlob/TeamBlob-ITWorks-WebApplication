@@ -39,16 +39,17 @@
     }
     else
     {
-        <div class="brand-result space">
-            <img class="result-divider" src="/img/line-1.svg" />
-            <div class="result-title">Select one of these brand(s)...</div>
-            <div class="brand-result-content">
-                @if (@Model.DoYouMeanList.Count > 0)
-                {
-                <div class="brand-card-container">
-                    @for (int i = 0; i < Model.DoYouMeanList.Count; i++)
-                    {
-                        <a class="brand-card" href="RedirectToFixCategory/@Model.DoYouMeanList[i].BrandID/@Model.FAQDeviceCategoryID">
+
+        @if (@Model.DoYouMeanList.Count > 0)
+        {
+            <div class="brand-result space">
+                <img class="result-divider" src="/img/line-1.svg" />
+                <div class="result-title">Select one of these brand(s)...</div>
+                <div class="brand-result-content" id="search-result">
+                    <div class="brand-card-container">
+                        @for (int i = 0; i < Model.DoYouMeanList.Count; i++)
+                        {
+                            <a class="brand-card" href="RedirectToFixCategory/@Model.DoYouMeanList[i].BrandID/@Model.FAQDeviceCategoryID">
                                 <div class="brand-card-body">
                                     <div class="brand-card-body-content">
 
@@ -57,23 +58,31 @@
 
                                     </div>
                                 </div>
-                        </a>
-                    }
+                            </a>
+                        }
                     </div>
-                }
-                else
-                {
-                    <img class="result-divider" src="/img/line-1.svg" />
-                    <div class="result-title">No brands found</div>
-                }
+                </div>
             </div>
-        </div>
+        }
+        else
+        {
+            <div class="brand-result space" id="search-result">
+                <img class="result-divider" src="/img/line-1.svg" />
+                <div class="result-title">No brands found</div>
+            </div>
+        }
+
+            
     }
 
+ </div>
 
-</div>
-
-
+<script>
+    var elementExists = document.getElementById('search-result');
+    if (elementExists) {
+        document.getElementById('search-result').scrollIntoView();
+    }
+</script>
 <!--<div class="container mt-5 pt-4">
     <section>-->
 @*<h2 class="mb-4">Search</h2>*@

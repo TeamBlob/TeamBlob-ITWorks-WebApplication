@@ -12,5 +12,9 @@ namespace ITWorks_Application.Controllers
         {
             return View();
         }
+        public IActionResult Welcome()
+        {
+            return View();
+        }
     }
 }
