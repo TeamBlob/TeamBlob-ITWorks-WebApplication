@@ -79,12 +79,12 @@
 
 <div class="container mt-5 pt-4">
     <section>
-        <h2 class="mb-4">Search</h2>
+        <h2 class="mb-4">Forum Page</h2>
 
         <div class="row">
             <!-- Search Bar -->
             <div class="col-12 mb-5">
-                @using (Html.BeginForm("Search", "Search", FormMethod.Get))
+                @using (Html.BeginForm("Filter", "ForumMain", FormMethod.Get))
                 {
                     <div class="form-group row">
                         <div class="col-12">
@@ -103,73 +103,50 @@
                 <div class="side-nav pt-4 mr-3">
                     <h4 class="mb-3">Filter</h4>
                     <hr class="left-hr" />
-                    <h5>By Polytechnic</h5>
-                    @using (Html.BeginForm("Filter", "Search", FormMethod.Get))
+                    <h5>By Device</h5>
+                    @using (Html.BeginForm("Filter", "ForumMain", FormMethod.Get))
                     {
                         <div class="form-check">
-                            @Html.RadioButton("filterSchool", "all", true)
+                            @Html.RadioButton("filterDevice", "all", true)
                             <label class="form-check-label" for="all-years">All</label>
                         </div>
-                        <div class="form-check">
-                            @Html.RadioButton("filterSchool", "Nanyang Polytechnic")
-                            <label class="form-check-label" for="Nanyang Polytechnic">Nanyang Poly</label>
-                        </div>
-                        <div class="form-check">
-                            @Html.RadioButton("filterSchool", "Ngee Ann Polytechnic")
-                            <label class="form-check-label" for="Ngee Ann Polytechnic">Ngee Ann Poly</label>
-                        </div>
-                        <div class="form-check">
-                            @Html.RadioButton("filterSchool", "Singapore Polytechnic")
-                            <label class="form-check-label" for="Singapore Polytechnic">Singapore Poly</label>
-                        </div>
-                        <div class="form-check">
-                            @Html.RadioButton("filterSchool", "Temasek Polytechnic")
-                            <label class="form-check-label" for="Temasek Polytechnic">Temasek Poly</label>
-                        </div>
-                        <div class="form-check">
-                            @Html.RadioButton("filterSchool", "Republic Polytechnic")
-                            <label class="form-check-label" for="Republic Polytechnic">Republic Poly</label>
-                        </div>
+                        @for (int i = 0; i < Model.forumDevice.Count(); i++)
+                        {
+                            <div class="form-check">
+                                @Html.RadioButton("filterDevice", @Model.forumDevice[i].DeviceCategoryName)
+                                <label class="form-check-label" for="@Model.forumDevice[i].DeviceCategoryName">@Model.forumDevice[i].DeviceCategoryName</label>
+                            </div>
+                        }
 
                         <div class="pt-5" style="white-space:nowrap">
-                            <h5>By Subject</h5>
+                            <h5>By Brand</h5>
                             <div class="form-check">
-                                @Html.RadioButton("filterTag", "all", true)
+                                @Html.RadioButton("filterBrand", "all", true)
                                 <label class="form-check-label" for="all-years">All</label>
                             </div>
-                            <div class="form-check">
-                                @Html.RadioButton("filterTag", "Applied Sciences")
-                                <label class="form-check-label" for="Applied Sciences">Applied Sciences</label>
-                            </div>
-                            <div class="form-check">
-                                @Html.RadioButton("filterTag", "Business & Management")
-                                <label class="form-check-label" for="Business & Management">Business & Management</label>
-                            </div>
-                            <div class="form-check">
-                                @Html.RadioButton("filterTag", "Built Environment")
-                                <label class="form-check-label" for="Built Environment">Built Environment</label>
-                            </div>
-                            <div class="form-check">
-                                @Html.RadioButton("filterTag", "Media & Design")
-                                <label class="form-check-label" for="Media & Design">Media & Design</label>
-                            </div>
-                            <div class="form-check">
-                                @Html.RadioButton("filterTag", "Information & Digital Technologies")
-                                <label class="form-check-label" for="Information & Digital Technologies">Information & Digital Tech</label>
-                            </div>
-                            <div class="form-check">
-                                @Html.RadioButton("filterTag", "Engineering")
-                                <label class="form-check-label" for="Engineering">Engineering</label>
-                            </div>
-                            <div class="form-check">
-                                @Html.RadioButton("filterTag", "Humanities")
-                                <label class="form-check-label" for="Humanities">Humanities</label>
-                            </div>
-                            <div class="form-check">
-                                @Html.RadioButton("filterTag", "Health Sciences")
-                                <label class="form-check-label" for="Health Sciences">Health Sciences</label>
-                            </div>
+                            @for (int i = 0; i < Model.forumDevice.Count(); i++)
+                            {
+                                <div class="form-check">
+                                    @Html.RadioButton("filterBrand", @Model.forumBrand[i].ForumBrandName)
+                                    <label class="form-check-label" for="@Model.forumBrand[i].ForumBrandName">@Model.forumBrand[i].ForumBrandName</label>
+                                </div>
+                            }
                         </div>
+                        <div class="pt-5" style="white-space:nowrap">
+                            <h5>By Issue</h5>
+                            <div class="form-check">
+                                @Html.RadioButton("filterIssue", "all", true)
+                                <label class="form-check-label" for="all-years">All</label>
+                            </div>
+                            @for (int i = 0; i < Model.forumDevice.Count(); i++)
+                            {
+                                <div class="form-check">
+                                    @Html.RadioButton("filterIssue", @Model.forumBrand[i].ForumBrandName)
+                                    <label class="form-check-label" for="@Model.forumIssues[i].IssueName">@Model.forumIssues[i].IssueName</label>
+                                </div>
+                            }
+                        </div>
+                        <button class="btn btn-accent search-btn" type="submit" value="search">Filter</button>
                     }
                 </div>
                 <!-- End of Filter -->

@@ -18,6 +18,18 @@ namespace ITWorks_Application.Controllers
             if (forumMainViewModel.forumQuestions == null)
                 forumMainViewModel.forumQuestions = new List<ForumQuestionModel>();
 
+            GetAllForum();
+
+            return View(forumMainViewModel);
+        }
+        [Route("ForumMain/RedirectToQuestion/{QuestionID}")]
+        public IActionResult RedirectToQuestion(int QuestionID)
+        {
+            return RedirectToAction("ForumQuestionIndex", "ForumQuestion", new { QuestionID = QuestionID });
+        }
+
+        public void GetAllForum()
+        {
             forumMainViewModel.forumQuestions = FakeDataController.list_of_forumQuestions.Select(x => new ForumQuestionModel
             {
                 Question = x,
@@ -29,12 +41,45 @@ namespace ITWorks_Application.Controllers
                 questionVotes = FakeDataController.list_of_forumVotes.FirstOrDefault(y => y.QuestionID == x.QuestionID),
             }).ToList();
 
-            return View(forumMainViewModel);
+            forumMainViewModel.forumBrand = FakeDataController.list_of_forumBrands;
+            forumMainViewModel.forumDevice = FakeDataController.list_of_forumDeviceCategories;
+            forumMainViewModel.forumIssues = FakeDataController.list_of_forumIssues;
         }
-        [Route("ForumMain/RedirectToQuestion/{QuestionID}")]
-        public IActionResult RedirectToQuestion(int QuestionID)
+
+        public ActionResult Filter(string filterBrand, string filterDevice, string filterIssue)
         {
-            return RedirectToAction("ForumQuestionIndex", "ForumQuestion", new { QuestionID = QuestionID });
+
+            GetAllForum();
+            if (filterBrand == "all" && filterDevice == "all" && filterIssue == "all") //No filter
+                return View("ForumMainIndex", forumMainViewModel);
+
+            if (!String.IsNullOrEmpty(filterBrand) && filterBrand != "all")
+                FilterByBrand(filterBrand);
+            if (!String.IsNullOrEmpty(filterDevice) && filterDevice != "all")
+                FilterByDevice(filterDevice);
+            if (!String.IsNullOrEmpty(filterIssue) && filterIssue != "all")
+                FilterByIssue(filterIssue);
+
+            return View("ForumMainIndex", forumMainViewModel);
+
+        }
+        public void FilterByBrand(string filterBrand)
+        {
+            filterBrand = filterBrand.Trim().ToLower();
+            forumMainViewModel.forumQuestions = forumMainViewModel.forumQuestions.
+                    Where(x => x.Brand.ForumBrandName.ToLower() == filterBrand).ToList();
+        }
+        public void FilterByDevice(string filterDevice)
+        {
+            filterDevice = filterDevice.Trim().ToLower();
+            forumMainViewModel.forumQuestions = forumMainViewModel.forumQuestions.
+                    Where(x => x.DeviceCategory.DeviceCategoryName.ToLower() == filterDevice).ToList();
+        }
+        public void FilterByIssue(string filterIssue)
+        {
+            filterIssue = filterIssue.Trim().ToLower();
+            forumMainViewModel.forumQuestions = forumMainViewModel.forumQuestions.
+                    Where(x => x.DeviceCategory.DeviceCategoryName.ToLower() == filterIssue).ToList();
         }
     }
 }

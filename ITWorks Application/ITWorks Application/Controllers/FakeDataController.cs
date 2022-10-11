@@ -59,8 +59,8 @@ namespace ITWorks_Application.Controllers
         };
         public static List<FixData> list_of_fixModel = new List<FixData>()
         {
-            new FixData{ FixID = 1, FixCategoryID = 1, BrandDeviceID = 1, FixTitle = "Cannot Charge Android Phone", FixDescription = "Cannot Charge Android Phone"},
-            new FixData{ FixID = 2, FixCategoryID = 1, BrandDeviceID = 2, FixTitle = "Cannot Charge iPhone", FixDescription = "Cannot Charge iPhone"}
+            new FixData{ FixID = 1, FixCategoryID = 2, BrandDeviceID = 1, FixTitle = "Cannot Charge Android Phone", FixDescription = "Cannot Charge Android Phone"},
+            new FixData{ FixID = 2, FixCategoryID = 2, BrandDeviceID = 2, FixTitle = "Cannot Charge iPhone", FixDescription = "Cannot Charge iPhone"}
         };
         public static List<InstructionData> list_of_instruction = new List<InstructionData>()
         {
