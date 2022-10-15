@@ -1,4 +1,6 @@
-﻿using ITWorks_Application.Models;
+﻿using ITWorks_Application.Controllers.api;
+using ITWorks_Application.DBModels;
+using ITWorks_Application.Models;
 using ITWorks_Application.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -6,23 +8,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ITWorks_Application.Controllers
+namespace ITWorks_Application.Controllers.ForumController
 {
     public class PostQuestionController : Controller
     {
+        private readonly ForumRepo repo;
         public static PostQuestionViewModel postQuestionViewModel;
-        [Route("PostQuestion/PostQuestionIndex/{deviceid?}/{brandid?}/{issueid?}/{subissueid?}")]
 
+        public PostQuestionController()
+        {
+            repo = new ForumRepo();
+        }
+
+        [Route("PostQuestion/PostQuestionIndex/{deviceid?}/{brandid?}/{issueid?}/{subissueid?}")]
         public IActionResult PostQuestionIndex(string device, string brand, string issue, string subissue)
         {
-            if(postQuestionViewModel  == null)
+            if (postQuestionViewModel == null)
                 postQuestionViewModel = new PostQuestionViewModel();
 
             postQuestionViewModel.deviceCategoryDatas = FakeDataController.list_of_forumDeviceCategories;
 
 
             postQuestionViewModel.brandDatas = GetForumBrands(device);
-            postQuestionViewModel.issueDatas = GetForumIssue(brand);   
+            postQuestionViewModel.issueDatas = GetForumIssue(brand);
             postQuestionViewModel.subIssueDatas = GetSubIssue(issue);
             GetContent(subissue);
 
@@ -36,18 +44,22 @@ namespace ITWorks_Application.Controllers
 
         public IActionResult SubmitQuestion(string QuestionTitle, string QuestionContent)
         {
-            if (String.IsNullOrEmpty(QuestionContent))
+            if (string.IsNullOrEmpty(QuestionContent))
                 return View(postQuestionViewModel);
+            postQuestionViewModel.questionModel.AccountID = 1;
             postQuestionViewModel.questionModel.QuestionTitle = QuestionTitle;
             postQuestionViewModel.questionModel.QuestionContent = QuestionContent;
 
-            return RedirectToAction("ForumQuestionIndex", "ForumQuestion");
+            ForumQuestionDatum datum = repo.PostNewQuestion(postQuestionViewModel.questionModel);
+            int questionid = repo.GetForumQuestionID(datum);
+            repo.PostNewQuestionVotes(questionid);
+            return RedirectToAction("ForumQuestionIndex", "ForumQuestion", new { QuestionID = questionid });
         }
 
         public List<ForumBrandData> GetForumBrands(string device)
         {
             RefreshCache();
-            if (!String.IsNullOrEmpty(device))
+            if (!string.IsNullOrEmpty(device))
             {
                 postQuestionViewModel.DeviceExpand = "";
                 postQuestionViewModel.BrandExpand = "show";
@@ -64,18 +76,18 @@ namespace ITWorks_Application.Controllers
                 return FakeDataController.list_of_forumBrands;
             }
 
-            else if(String.IsNullOrEmpty(postQuestionViewModel.questionModel.DeviceCategory)) 
+            else if (string.IsNullOrEmpty(postQuestionViewModel.questionModel.DeviceCategory))
                 return null;
 
             device = postQuestionViewModel.questionModel.DeviceCategory;
 
             return FakeDataController.list_of_forumBrands;
-            
+
         }
         public List<ForumIssueData> GetForumIssue(string brand)
         {
             RefreshCache();
-            if (!String.IsNullOrEmpty(brand))
+            if (!string.IsNullOrEmpty(brand))
             {
                 postQuestionViewModel.DeviceExpand = "";
                 postQuestionViewModel.BrandExpand = "";
@@ -92,7 +104,7 @@ namespace ITWorks_Application.Controllers
                 return FakeDataController.list_of_forumIssues;
             }
 
-            else if (String.IsNullOrEmpty(postQuestionViewModel.questionModel.Brand))
+            else if (string.IsNullOrEmpty(postQuestionViewModel.questionModel.Brand))
                 return null;
 
             brand = postQuestionViewModel.questionModel.DeviceCategory;
@@ -102,7 +114,7 @@ namespace ITWorks_Application.Controllers
         public List<ForumSubIssueData> GetSubIssue(string issue)
         {
             RefreshCache();
-            if (!String.IsNullOrEmpty(issue))
+            if (!string.IsNullOrEmpty(issue))
             {
                 postQuestionViewModel.DeviceExpand = "";
                 postQuestionViewModel.BrandExpand = "";
@@ -119,7 +131,7 @@ namespace ITWorks_Application.Controllers
                 return FakeDataController.list_of_subforumIssues;
             }
 
-            else if (String.IsNullOrEmpty(postQuestionViewModel.questionModel.Issue))
+            else if (string.IsNullOrEmpty(postQuestionViewModel.questionModel.Issue))
                 return null;
 
             issue = postQuestionViewModel.questionModel.Issue;
@@ -127,7 +139,7 @@ namespace ITWorks_Application.Controllers
         }
         public void GetContent(string subissue)
         {
-            if (!String.IsNullOrEmpty(subissue))
+            if (!string.IsNullOrEmpty(subissue))
             {
                 postQuestionViewModel.DeviceExpand = "";
                 postQuestionViewModel.BrandExpand = "";
@@ -152,29 +164,29 @@ namespace ITWorks_Application.Controllers
         }
         public void DeviceChoose(string device)
         {
-            if (String.IsNullOrEmpty(device)) return;
+            if (string.IsNullOrEmpty(device)) return;
 
-            int deviceid = FakeDataController.list_of_forumDeviceCategories.FirstOrDefault(x=> x.DeviceCategoryName == device).DeviceCategoryID;
+            int deviceid = FakeDataController.list_of_forumDeviceCategories.FirstOrDefault(x => x.DeviceCategoryName == device).DeviceCategoryID;
             postQuestionViewModel.questionModel.DeviceCategory = device;
 
         }
         public void BrandChoose(string brand)
         {
-            if (String.IsNullOrEmpty(brand)) return;
+            if (string.IsNullOrEmpty(brand)) return;
 
             int brandid = FakeDataController.list_of_forumBrands.FirstOrDefault(x => x.ForumBrandName == brand).ForumBrandID;
             postQuestionViewModel.questionModel.Brand = brand;
         }
         public void IssueChoose(string issue)
         {
-            if (String.IsNullOrEmpty(issue)) return;
+            if (string.IsNullOrEmpty(issue)) return;
 
             int issueid = FakeDataController.list_of_forumIssues.FirstOrDefault(x => x.IssueName == issue).IssueID;
             postQuestionViewModel.questionModel.Issue = issue;
         }
         public void SubIssueChoose(string subissue)
         {
-            if (String.IsNullOrEmpty(subissue)) return;
+            if (string.IsNullOrEmpty(subissue)) return;
 
             int subissueid = FakeDataController.list_of_subforumIssues.FirstOrDefault(x => x.SubIssueName == subissue).SubIssueID;
             postQuestionViewModel.questionModel.SubIssue = subissue;

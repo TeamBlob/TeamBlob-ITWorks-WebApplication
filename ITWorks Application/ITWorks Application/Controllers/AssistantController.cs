@@ -11,7 +11,7 @@ namespace ITWorks_Application.Controllers
     public class AssistantController : Controller
     {
         public static PostQuestionViewModel postQuestionViewModel;
-        [Route("PostQuestion/PostQuestionIndex/{deviceid?}/{brandid?}/{issueid?}/{subissueid?}")]
+        [Route("Assistant/AssistantIndex/{deviceid?}/{brandid?}/{issueid?}/{subissueid?}")]
         public IActionResult AssistantIndex(string device, string brand, string issue, string subissue)
         {
             if (postQuestionViewModel == null)

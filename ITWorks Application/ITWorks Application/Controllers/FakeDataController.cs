@@ -69,7 +69,7 @@ namespace ITWorks_Application.Controllers
         };
         public static List<FixInstructionData> list_of_fixInstruction = new List<FixInstructionData>()
         {
-            new FixInstructionData { FixID = 1, InstructionID = 1, SolutionStep = 1},
+            new FixInstructionData { FixID = 1, InstructionID = 1, SolutionStep = 1 },
             new FixInstructionData { FixID = 1, InstructionID = 2, SolutionStep = 2 },
             new FixInstructionData { FixID = 2, InstructionID = 1, SolutionStep = 1 },
             new FixInstructionData { FixID = 2, InstructionID = 2, SolutionStep = 2 }

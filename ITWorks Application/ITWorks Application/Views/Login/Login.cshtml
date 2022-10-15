@@ -1,33 +1,34 @@
 ﻿@{
     ViewData["Title"] = "Login Page";
 }
-
-<div class="sign-up-page screen">
-    <div class="credentials-email">
-        <div class="email inter-normal-sonic-silver-20px">Email</div>
-        @Html.TextBox("email", ViewBag.SearchValue as string, new { @class = "email-content", autocomplete = "off" })
-        <img class="line-2-email" src="~/img/line-2.svg" />
-    </div>
-    <div class="credentials-password">
-        <div class="password inter-normal-sonic-silver-20px">Password</div>
-        @Html.TextBox("password", ViewBag.SearchValue as string, new { @class = "password-content", autocomplete = "off", type = "password" })
-        <img class="line-2-password" src="~/img/line-2.svg"/>
-    </div>
-    <img class="eye" src="~/img/eye.svg" id="togglePassword" />
+@using (Html.BeginForm("PerformLogin", "Login", FormMethod.Get))
+{
+    <div class="sign-up-page screen">
+        <div class="credentials-email">
+            <div class="email inter-normal-sonic-silver-20px">Email</div>
+            @Html.TextBox("username", ViewBag.SearchValue as string, new { @class = "email-content", autocomplete = "off" })
+            <img class="line-2-email" src="~/img/line-2.svg" />
+        </div>
+        <div class="credentials-password">
+            <div class="password inter-normal-sonic-silver-20px">Password</div>
+            @Html.TextBox("password", ViewBag.SearchValue as string, new { @class = "password-content", autocomplete = "off", type = "password" })
+            <img class="line-2-password" src="~/img/line-2.svg"/>
+        </div>
+        <img class="eye" src="~/img/eye.svg" id="togglePassword" />
     
-    <div class="back-button">
-        <a class="back-button-content" asp-area="" asp-controller="HomePage" asp-action="Index" >
-            <img class="back-button-icon" src="~/img/back-button-1.svg"/>
-            <div class="back-text">Home</div>
-        </a>
-    </div>
+        <div class="back-button">
+            <a class="back-button-content" asp-area="" asp-controller="HomePage" asp-action="Index" >
+                <img class="back-button-icon" src="~/img/back-button-1.svg"/>
+                <div class="back-text">Home</div>
+            </a>
+        </div>
 
-    <div class="login-button-content">
-        <div class="login-button"></div>
-        <div class="login-text">Login</div>
+        <button type="submit" class="login-button-content">
+            <div type="submit" class="login-button"></div>
+            <div type="submit" class="login-text">Login</div>
+        </button>
     </div>
-</div>
-
+}
 <script>
     const togglePassword = document.querySelector('#togglePassword');
     const password = document.querySelector('.password-content');
