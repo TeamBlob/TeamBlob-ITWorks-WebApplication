@@ -162,5 +162,29 @@ namespace ITWorks_Application.Controllers.api
             _context.SaveChanges();
             
         }
+        public void PostAnswer(ForumAnswerData data)
+        {
+            var newAnswer = new ForumAnswerDatum()
+            {
+                AccountId = data.AccountID,
+                QuestionId = data.QuestionID,
+                AnswerContent = data.AnswerContent,
+                UploadDateTime = DateTime.Now,
+            };
+            _context.ForumAnswerData.Add(newAnswer);
+            _context.SaveChanges();
+        }
+        public void PostAnswer(ForumCommentData data)
+        {
+            var newComment = new ForumCommentDatum()
+            {
+                AccountId = data.AccountID,
+                AnswerId = data.AnswerID,
+                CommentContent = data.CommentContent,
+                UploadDateTime = DateTime.Now,
+            };
+            _context.ForumCommentData.Add(newComment);
+            _context.SaveChanges();
+        }
     }
 }
