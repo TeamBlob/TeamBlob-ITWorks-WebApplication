@@ -1,4 +1,5 @@
-﻿using ITWorks_Application.Models;
+﻿using ITWorks_Application.Controllers.api;
+using ITWorks_Application.Models;
 using ITWorks_Application.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -9,8 +10,12 @@ namespace ITWorks_Application.Controllers
 {
     public class FixCategoryController : Controller
     {
+        private readonly FAQRepo repo;
         public static FixCategoryViewModel fixCategoryViewModel { get; set; }
-
+        public FixCategoryController()
+        {
+            repo = new FAQRepo();
+        }
         [Route("FixCategory/FixCategoryIndex/{BrandDeviceID}")]
         public IActionResult FixCategoryIndex(int BrandDeviceID)
         {
@@ -21,8 +26,8 @@ namespace ITWorks_Application.Controllers
                 if(BrandDeviceID >= 1)
                     fixCategoryViewModel.BrandDeviceID = BrandDeviceID;
 
-                fixCategoryViewModel.brandDeviceFixCategories = FakeDataController.list_of_fixdeviceBrands.Where(x => x.BrandDeviceID == fixCategoryViewModel.BrandDeviceID).ToList();
-                fixCategoryViewModel.fixCategoryModels = FakeDataController.list_of_fixCategory.Intersect(FakeDataController.list_of_fixCategory.Where(k => fixCategoryViewModel.brandDeviceFixCategories.Any(x => x.FixCategoryID == k.FixCategoryID))).ToList();
+                fixCategoryViewModel.brandDeviceFixCategories = repo.GetBrandDeviceFixPairs(BrandDeviceID);//FakeDataController.list_of_fixdeviceBrands.Where(x => x.BrandDeviceID == fixCategoryViewModel.BrandDeviceID).ToList();
+                fixCategoryViewModel.fixCategoryModels = repo.GetFixCategories(fixCategoryViewModel.brandDeviceFixCategories);//FakeDataController.list_of_fixCategory.Intersect(FakeDataController.list_of_fixCategory.Where(k => fixCategoryViewModel.brandDeviceFixCategories.Any(x => x.FixCategoryID == k.FixCategoryID))).ToList();
             }
 
             return View(fixCategoryViewModel);
@@ -37,7 +42,7 @@ namespace ITWorks_Application.Controllers
                 fixCategoryViewModel.searchResults.Clear();
 
 
-            fixCategoryViewModel.searchResults.AddRange(FakeDataController.list_of_fixModel.Where(x => x.BrandDeviceID == Convert.ToInt32(BrandDeviceID) && x.FixCategoryID == Convert.ToInt32(FixCategoryID)));
+            fixCategoryViewModel.searchResults.AddRange(repo.GetFixDataByFixCategoryID(Convert.ToInt32(BrandDeviceID), Convert.ToInt32(FixCategoryID)));
 
             return View("FixCategoryIndex", fixCategoryViewModel);
         }
@@ -57,7 +62,7 @@ namespace ITWorks_Application.Controllers
                 if (fixCategoryViewModel.searchResults != null)
                     fixCategoryViewModel.searchResults.Clear();
 
-                fixCategoryViewModel.searchResults.AddRange(FakeDataController.list_of_fixModel.Where(x => x.BrandDeviceID == fixCategoryViewModel.BrandDeviceID && (x.FixTitle.ToLower().Contains(search) || x.FixDescription.ToLower().Contains(search))).ToList());
+                fixCategoryViewModel.searchResults.AddRange(repo.GetFixDataByKeyword(fixCategoryViewModel.BrandDeviceID, search));
 
                 return View("FixCategoryIndex", fixCategoryViewModel);
             }

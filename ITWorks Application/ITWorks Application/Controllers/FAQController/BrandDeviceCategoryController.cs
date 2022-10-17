@@ -1,4 +1,5 @@
-﻿using ITWorks_Application.Models;
+﻿using ITWorks_Application.Controllers.api;
+using ITWorks_Application.Models;
 using ITWorks_Application.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,7 +12,13 @@ namespace ITWorks_Application.Controllers
 {
     public class BrandCategoryController : Controller
     {
+        private readonly FAQRepo repo;
         public static BrandCategoryViewModel brandCategoryViewModel { get; set; } // Make into a session
+
+        public BrandCategoryController()
+        {
+            repo = new FAQRepo();
+        }
 
         [Route("BrandCategory/BrandCategory/{DeviceID}")]
         public IActionResult BrandCategory(int DeviceID)
@@ -22,8 +29,8 @@ namespace ITWorks_Application.Controllers
             if (brandCategoryViewModel.FAQDeviceCategoryID != DeviceID)
                 brandCategoryViewModel.FAQDeviceCategoryID = DeviceID;
 
-            List<BrandDeviceData> list_of_deviceBrands = FakeDataController.list_of_deviceBrands.Where(x => x.FAQDeviceCategoryID == DeviceID).ToList();
-            brandCategoryViewModel.BrandsModels = FakeDataController.list_of_brands.Intersect(FakeDataController.list_of_brands.Where(k => list_of_deviceBrands.Any(x => x.BrandID == k.BrandID))).ToList();
+            //List<BrandDeviceData> list_of_deviceBrands = FakeDataController.list_of_deviceBrands.Where(x => x.FAQDeviceCategoryID == DeviceID).ToList();
+            brandCategoryViewModel.BrandsModels = repo.GetDeviceBrand(DeviceID);//FakeDataController.list_of_brands.Intersect(FakeDataController.list_of_brands.Where(k => list_of_deviceBrands.Any(x => x.BrandID == k.BrandID))).ToList();
 
             return View(brandCategoryViewModel);
         }
@@ -46,7 +53,7 @@ namespace ITWorks_Application.Controllers
         [Route("BrandCategory/RedirectToFixCategory/{BrandID}/{FAQDeviceCategoryID}")]
         public ActionResult RedirectToFixCategory(int BrandID, int FAQDeviceCategoryID)
         {
-            int BrandDeviceID = FakeDataController.list_of_deviceBrands.FirstOrDefault(x => x.BrandID == BrandID && x.FAQDeviceCategoryID == FAQDeviceCategoryID).BrandDeviceID;
+            int BrandDeviceID = repo.GetDeviceBrandPairID(BrandID, FAQDeviceCategoryID);//FakeDataController.list_of_deviceBrands.FirstOrDefault(x => x.BrandID == BrandID && x.FAQDeviceCategoryID == FAQDeviceCategoryID).BrandDeviceID;
 
             return RedirectToAction("FixCategoryIndex", "FixCategory", new { BrandDeviceID = BrandDeviceID });
         }
