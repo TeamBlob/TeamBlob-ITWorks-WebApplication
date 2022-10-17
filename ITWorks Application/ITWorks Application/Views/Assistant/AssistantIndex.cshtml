@@ -1,4 +1,4 @@
-﻿@model ITWorks_Application.ViewModels.PostQuestionViewModel
+﻿@model ITWorks_Application.ViewModels.AssistantViewModel
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -10,15 +10,20 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
+    <!--Section heading-->
+    <h2 class="h1-responsive font-weight-bold text-center my-4">Ask us</h2>
+    <!--Section description-->
+    <p class="text-center w-responsive mx-auto mb-5">
+        Do you have any questions? Please do not hesitate to contact us directly. Our specialist will contact you!
+    </p>
     <div class="container mt-4 pt-3">
-
         <div class="accordion" id="PostAccordion">
             <div class="accordion-item">
                 <h2 class="accordion-header" id="DeviceHeading">
                     <button class="accordion-button" id="devicebtn" type="button" data-bs-toggle="collapse" data-bs-target="#devicecollapse" aria-expanded="@Model.DeviceBool" aria-controls="devicecollapse">
-                        @if (!String.IsNullOrEmpty(Model.questionModel.DeviceCategory))
+                        @if (!String.IsNullOrEmpty(Model.chat.DeviceCategory))
                         {
-                            @Model.questionModel.DeviceCategory
+                            @Model.chat.DeviceCategory
                         }
                         else
                         {
@@ -33,7 +38,7 @@
                             <ul class="list-group list-group-flush">
                                 @for (int i = 0; i < Model.deviceCategoryDatas.Count; i++)
                                 {
-                                    <a href="@Url.ActionLink(action: "PostQuestionIndex", values: new { device = Model.deviceCategoryDatas[i].DeviceCategoryName })" class="list-group-item">
+                                    <a href="@Url.ActionLink(action: "AssistantIndex", values: new { device = Model.deviceCategoryDatas[i].DeviceCategoryName })" class="list-group-item">
                                         @Model.deviceCategoryDatas[i].DeviceCategoryName
                                     </a>
                                 }
@@ -45,9 +50,9 @@
             <div class="accordion-item">
                 <h2 class="accordion-header" id="BrandHeading">
                     <button class="accordion-button collapsed" id="brandbtn" type="button" data-bs-toggle="collapse" data-bs-target="#brandcollapse" aria-expanded="@Model.BrandBool" aria-controls="brandcollapse">
-                        @if (!String.IsNullOrEmpty(Model.questionModel.Brand))
+                        @if (!String.IsNullOrEmpty(Model.chat.Brand))
                         {
-                            @Model.questionModel.Brand
+                            @Model.chat.Brand
                         }
                         else
                         {
@@ -62,7 +67,7 @@
                             <ul class="list-group list-group-flush">
                                 @for (int i = 0; i < Model.brandDatas.Count; i++)
                                 {
-                                    <a href="@Url.ActionLink(action: "PostQuestionIndex", values: new { brand = Model.brandDatas[i].ForumBrandName })" class="list-group-item">
+                                    <a href="@Url.ActionLink(action: "AssistantIndex", values: new { brand = Model.brandDatas[i].ForumBrandName })" class="list-group-item">
                                         @Model.brandDatas[i].ForumBrandName
                                     </a>
                                 }
@@ -73,9 +78,9 @@
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="IssueHeading">
                         <button class="accordion-button collapsed" id="issuebtn" type="button" data-bs-toggle="collapse" data-bs-target="#issuecollapse" aria-expanded="@Model.IssueBool" aria-controls="issuecollapse">
-                            @if (!String.IsNullOrEmpty(Model.questionModel.Issue))
+                            @if (!String.IsNullOrEmpty(Model.chat.Issue))
                             {
-                                @Model.questionModel.Issue
+                                @Model.chat.Issue
                             }
                             else
                             {
@@ -90,7 +95,7 @@
                                 <ul class="list-group list-group-flush">
                                     @for (int i = 0; i < Model.issueDatas.Count; i++)
                                     {
-                                        <a href="@Url.ActionLink(action: "PostQuestionIndex", values: new { issue = Model.issueDatas[i].IssueName })" class="list-group-item">
+                                        <a href="@Url.ActionLink(action: "AssistantIndex", values: new { issue = Model.issueDatas[i].IssueName })" class="list-group-item">
                                             @Model.issueDatas[i].IssueName
                                         </a>
                                     }
@@ -102,9 +107,9 @@
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="SubIssueHeading">
                         <button class="accordion-button collapsed" id="subissuebtn" type="button" data-bs-toggle="collapse" data-bs-target="#subissuecollapse" aria-expanded="@Model.SubBool" aria-controls="issuecollapse">
-                            @if (!String.IsNullOrEmpty(Model.questionModel.SubIssue))
+                            @if (!String.IsNullOrEmpty(Model.chat.SubIssue))
                             {
-                                @Model.questionModel.SubIssue
+                                @Model.chat.SubIssue
                             }
                             else
                             {
@@ -119,7 +124,7 @@
                                 <ul class="list-group list-group-flush">
                                     @for (int i = 0; i < Model.subIssueDatas.Count; i++)
                                     {
-                                        <a href="@Url.ActionLink(action: "PostQuestionIndex", values: new { subissue = Model.subIssueDatas[i].SubIssueName })" class="list-group-item">
+                                        <a href="@Url.ActionLink(action: "AssistantIndex", values: new { subissue = Model.subIssueDatas[i].SubIssueName })" class="list-group-item">
                                             @Model.subIssueDatas[i].SubIssueName
                                         </a>
                                     }
@@ -129,21 +134,22 @@
                     </div>
                 </div>
                 <div class="accordion-item">
-                    <h2 class="accordion-header" id="SubIssueHeading">
+                    <h2 class="accordion-header" id="ContnetHeading">
                         <button class="accordion-button collapsed" id="subissuebtn" type="button" data-bs-toggle="collapse" data-bs-target="#contentcollapse" aria-expanded="@Model.ContentBool" aria-controls="issuecollapse">
                             Tell us in your own words
                         </button>
                     </h2>
                     <div id="contentcollapse" class="accordion-collapse collapse @Model.ContentExpand.ToString()" aria-labelledby="SubIssueHeading" data-bs-parent="#PostAccordion">
                         <div class="accordion-body">
-                            @using (Html.BeginForm("SubmitQuestion", "PostQuestion", FormMethod.Post))
+                            @using (Html.BeginForm("CreateLink", "Assistant", FormMethod.Post))
                             {
                                 <div class="card card-body">
                                     <div class="form-group">
-                                        @Html.TextArea("QuestionTitle", ViewBag.SearchValue as string, new { @class = "form-control", rows = "1", placeholder = "Title: Unable to charge my phone...", autocomplete = "off" })
-                                        @Html.TextArea("QuestionContent", ViewBag.SearchValue as string, new { @class = "form-control", rows = "3", placeholder = "Question Here...", autocomplete = "off" })
+                                        <h6>Choose a Session Date: </h6>@Html.TextBox("MeetingTime", ViewBag.SearchValue as string, new { @class = "form-control", type = "datetime-local", rows = "1", placeholder = "Select a Meeting Date", autocomplete = "off" })
+                                        <h6>Subject: </h6>@Html.TextArea("QuestionTitle", ViewBag.SearchValue as string, new { @class = "form-control", rows = "1", placeholder = "Unable to charge my phone...", autocomplete = "off" })
+                                        <h6>Your message: </h6>@Html.TextArea("QuestionContent", ViewBag.SearchValue as string, new { @class = "form-control", rows = "3", placeholder = "Question Here...", autocomplete = "off" })
                                     </div>
-                                    <button type="submit" class="btn btn-primary mb-2">Post Question</button>
+                                    <button type="submit" onclick="doBookmark()" class="btn btn-primary mb-2">Schedule A Meet Up</button>
                                 </div>
                             }
                         </div>
@@ -151,6 +157,44 @@
                 </div>
             </div>
         </div>
+        @if (!String.IsNullOrEmpty(@Model.chat.join_url))
+        {
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                View Meeting Link
+            </button>
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">@Model.chat.topic</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="col-sm-9">
+                                <section><strong>Subject:</strong> @Model.chat.QuestionTitle</section>
+                                <section><strong>Message Raise:</strong> @Model.chat.QuestionContent</section>
+                                <section><strong>Tag:</strong></section>
+                                <section><strong>- Device:</strong> @Model.chat.DeviceCategory</section>
+                                <section><strong>- Brand:</strong> @Model.chat.Brand</section>
+                                <section><strong>- Issue:</strong> @Model.chat.Issue</section>
+                                <section><strong>- Sub Issue:</strong> @Model.chat.SubIssue</section>
+                                <vr />
+                                <h5>Link:</h5><input id="zoomlink" class="form-control" type="text" value="@Model.chat.join_url" readonly>
+                                <h5>Passcode:</h5><input readonly class="form-control-plaintext" id="zoompasscode" placeholder="xxxx" value="@Model.chat.password">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-link" onclick="copyToClipboard()">Copy Link</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+
     </div>
 </body>
 </html>
@@ -178,7 +222,16 @@
     subissuebtn.addEventListener('click', function handleClick() {
         subissuebtn.textContent = 'Select a Sub Issue';
     });
+    function copyToClipboard() {
+        var zoomLink = document.getElementById("zoomlink");
+        /* Select the text field */
+        zoomLink.select();
+        zoomLink.setSelectionRange(0, 99999); /* For mobile devices */
 
-
+        /* Copy the text inside the text field */
+        navigator.clipboard.writeText(zoomLink.value);
+        /* Alert the copied text */
+        alert("Link Copied");
+    }
 
 </script>

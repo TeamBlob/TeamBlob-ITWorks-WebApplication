@@ -10,12 +10,12 @@ namespace ITWorks_Application.Controllers
 {
     public class AssistantController : Controller
     {
-        public static PostQuestionViewModel postQuestionViewModel;
+        public static AssistantViewModel postQuestionViewModel;
         [Route("Assistant/AssistantIndex/{deviceid?}/{brandid?}/{issueid?}/{subissueid?}")]
         public IActionResult AssistantIndex(string device, string brand, string issue, string subissue)
         {
             if (postQuestionViewModel == null)
-                postQuestionViewModel = new PostQuestionViewModel();
+                postQuestionViewModel = new AssistantViewModel();
 
             postQuestionViewModel.deviceCategoryDatas = FakeDataController.list_of_forumDeviceCategories;
 
@@ -31,14 +31,15 @@ namespace ITWorks_Application.Controllers
             SubIssueChoose(subissue);
             return View(postQuestionViewModel);
         }
-        public IActionResult SubmitQuestion(string QuestionTitle, string QuestionContent)
+        public IActionResult CreateLink(string MeetingTime, string QuestionTitle, string QuestionContent)
         {
             if (String.IsNullOrEmpty(QuestionContent))
                 return View(postQuestionViewModel);
-            postQuestionViewModel.questionModel.QuestionTitle = QuestionTitle;
-            postQuestionViewModel.questionModel.QuestionContent = QuestionContent;
-
-            return RedirectToAction("ForumQuestionIndex", "ForumQuestion");
+            postQuestionViewModel.chat.QuestionTitle = QuestionTitle;
+            postQuestionViewModel.chat.QuestionContent = QuestionContent;
+            postQuestionViewModel.chat.MeetingSession = DateTime.Parse(MeetingTime);
+            ZoomController.CreateZoomStatic(postQuestionViewModel.chat);
+            return View("AssistantIndex", postQuestionViewModel);
         }
 
         public List<ForumBrandData> GetForumBrands(string device)
@@ -61,10 +62,10 @@ namespace ITWorks_Application.Controllers
                 return FakeDataController.list_of_forumBrands;
             }
 
-            else if (String.IsNullOrEmpty(postQuestionViewModel.questionModel.DeviceCategory))
+            else if (String.IsNullOrEmpty(postQuestionViewModel.chat.DeviceCategory))
                 return null;
 
-            device = postQuestionViewModel.questionModel.DeviceCategory;
+            device = postQuestionViewModel.chat.DeviceCategory;
 
             return FakeDataController.list_of_forumBrands;
 
@@ -89,10 +90,10 @@ namespace ITWorks_Application.Controllers
                 return FakeDataController.list_of_forumIssues;
             }
 
-            else if (String.IsNullOrEmpty(postQuestionViewModel.questionModel.Brand))
+            else if (String.IsNullOrEmpty(postQuestionViewModel.chat.Brand))
                 return null;
 
-            brand = postQuestionViewModel.questionModel.DeviceCategory;
+            brand = postQuestionViewModel.chat.DeviceCategory;
 
             return FakeDataController.list_of_forumIssues;
         }
@@ -116,10 +117,10 @@ namespace ITWorks_Application.Controllers
                 return FakeDataController.list_of_subforumIssues;
             }
 
-            else if (String.IsNullOrEmpty(postQuestionViewModel.questionModel.Issue))
+            else if (String.IsNullOrEmpty(postQuestionViewModel.chat.Issue))
                 return null;
 
-            issue = postQuestionViewModel.questionModel.Issue;
+            issue = postQuestionViewModel.chat.Issue;
             return FakeDataController.list_of_subforumIssues;
         }
         public void GetContent(string subissue)
@@ -152,7 +153,7 @@ namespace ITWorks_Application.Controllers
             if (String.IsNullOrEmpty(device)) return;
 
             int deviceid = FakeDataController.list_of_forumDeviceCategories.FirstOrDefault(x => x.DeviceCategoryName == device).DeviceCategoryID;
-            postQuestionViewModel.questionModel.DeviceCategory = device;
+            postQuestionViewModel.chat.DeviceCategory = device;
 
         }
         public void BrandChoose(string brand)
@@ -160,21 +161,21 @@ namespace ITWorks_Application.Controllers
             if (String.IsNullOrEmpty(brand)) return;
 
             int brandid = FakeDataController.list_of_forumBrands.FirstOrDefault(x => x.ForumBrandName == brand).ForumBrandID;
-            postQuestionViewModel.questionModel.Brand = brand;
+            postQuestionViewModel.chat.Brand = brand;
         }
         public void IssueChoose(string issue)
         {
             if (String.IsNullOrEmpty(issue)) return;
 
             int issueid = FakeDataController.list_of_forumIssues.FirstOrDefault(x => x.IssueName == issue).IssueID;
-            postQuestionViewModel.questionModel.Issue = issue;
+            postQuestionViewModel.chat.Issue = issue;
         }
         public void SubIssueChoose(string subissue)
         {
             if (String.IsNullOrEmpty(subissue)) return;
 
             int subissueid = FakeDataController.list_of_subforumIssues.FirstOrDefault(x => x.SubIssueName == subissue).SubIssueID;
-            postQuestionViewModel.questionModel.SubIssue = subissue;
+            postQuestionViewModel.chat.SubIssue = subissue;
         }
     }
 }
