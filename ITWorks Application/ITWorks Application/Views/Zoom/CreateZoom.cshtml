@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Create Zoom Link";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Here is your zoom link.</h1>
+    
+    <p>Topic: @ViewBag.topic</p>
+    <p><a href="@ViewBag.join_url" target="_blank">@ViewBag.join_url</a> (Password: @ViewBag.password)</p>
+    <p>Supported by: @ViewBag.host_email</p>
+    <p></p>
+
+    <!--RAW: @ViewBag.RAWMessage-->
+</div>
