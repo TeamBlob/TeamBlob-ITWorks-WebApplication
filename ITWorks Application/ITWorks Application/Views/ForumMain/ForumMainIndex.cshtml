@@ -76,102 +76,99 @@
     }
 </style>
 
-
-<div class="container mt-5 pt-4">
-    <section>
-        <h2 class="mb-4">Forum Page</h2>
-
-        <div class="row">
-            <!-- Search Bar -->
-            <div class="col-12 mb-5">
-                @using (Html.BeginForm("Filter", "ForumMain", FormMethod.Get))
-                {
-                    <div class="form-group row">
-                        <div class="col-12">
-                            <div class="search-container">
-                                @Html.TextBox("search", ViewBag.SearchValue as string, new { @class = "form-control search-bar", placeholder = "Search here...", autocomplete = "off" })
-                                <button class="btn btn-accent search-btn" type="submit" value="search"><i class="fas fa-search"></i></button>
-                            </div>
-                        </div>
+@* container mt-5 pt-4 *@
+<div class="forum-page">
+    <div class="forum-page-title">Forum Page</div>
+    <div class="post-question-button-content">
+        <a class="post-question-button" asp-area="" asp-controller="PostQuestion" asp-action="PostQuestionIndex">
+            <div class="post-question-text">Post Question</div>
+        </a>
+    </div>
+    <div class="forum-page-content">
+        @*@using (Html.BeginForm("Filter", "ForumMain", FormMethod.Get))
+        {
+            <div class="form-group row">
+                <div class="col-12">
+                    <div class="search-container">
+                        @Html.TextBox("search", ViewBag.SearchValue as string, new { @class = "forum-search-bar", placeholder = "Search here...", autocomplete = "off" })
+                        <button class="search-bar-button" type="submit" value="search">
+                            <img class="search-bar-img" src="~/img/search.svg" />
+                        </button>
                     </div>
-                }
+                </div>
             </div>
-            <!--End of Search Bar -->
+        }*@
+        <div class="row">
             <!-- Left Col -->
             <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3">
                 <!-- Filter -->
                 <div class="side-nav pt-4 mr-3">
-                    <h4 class="mb-3">Filter</h4>
+                    <div class="filter-title">Filter</div>
                     <hr class="left-hr" />
-                    <h5>By Device</h5>
+                    <div class="filter-subtitle">By Device</div>
                     @using (Html.BeginForm("Filter", "ForumMain", FormMethod.Get))
                     {
-                        <div class="form-check">
+                        <label class="form-check">
                             @Html.RadioButton("filterDevice", "all", true)
-                            <label class="form-check-label" for="all-years">All</label>
-                        </div>
+                            <span class="form-check-label" for="all-years">All</span>
+                        </label>
                         @for (int i = 0; i < Model.forumDevice.Count(); i++)
                         {
-                            <div class="form-check">
+                            <label class="form-check">
                                 @Html.RadioButton("filterDevice", @Model.forumDevice[i].DeviceCategoryName)
-                                <label class="form-check-label" for="@Model.forumDevice[i].DeviceCategoryName">@Model.forumDevice[i].DeviceCategoryName</label>
-                            </div>
+                                <span class="form-check-label" for="@Model.forumDevice[i].DeviceCategoryName">@Model.forumDevice[i].DeviceCategoryName</span>
+                            </label>
                         }
 
                         <div class="pt-5" style="white-space:nowrap">
-                            <h5>By Brand</h5>
-                            <div class="form-check">
+                            <div class="filter-subtitle">By Brand</div>
+                            <label class="form-check">
                                 @Html.RadioButton("filterBrand", "all", true)
-                                <label class="form-check-label" for="all-years">All</label>
-                            </div>
+                                <span class="form-check-label" for="all-years">All</span>
+                            </label>
                             @for (int i = 0; i < Model.forumDevice.Count(); i++)
                             {
-                                <div class="form-check">
+                                <label class="form-check">
                                     @Html.RadioButton("filterBrand", @Model.forumBrand[i].ForumBrandName)
-                                    <label class="form-check-label" for="@Model.forumBrand[i].ForumBrandName">@Model.forumBrand[i].ForumBrandName</label>
-                                </div>
+                                    <span class="form-check-label" for="@Model.forumBrand[i].ForumBrandName">@Model.forumBrand[i].ForumBrandName</span>
+                                </label>
                             }
                         </div>
                         <div class="pt-5" style="white-space:nowrap">
-                            <h5>By Issue</h5>
-                            <div class="form-check">
+                            <div class="filter-subtitle">By Issue</div>
+                            <label class="form-check">
                                 @Html.RadioButton("filterIssue", "all", true)
-                                <label class="form-check-label" for="all-years">All</label>
-                            </div>
+                                <span class="form-check-label" for="all-years">All</span>
+                            </label>
                             @for (int i = 0; i < Model.forumDevice.Count(); i++)
                             {
-                                <div class="form-check">
+                                <label class="form-check">
                                     @Html.RadioButton("filterIssue", @Model.forumBrand[i].ForumBrandName)
-                                    <label class="form-check-label" for="@Model.forumIssues[i].IssueName">@Model.forumIssues[i].IssueName</label>
-                                </div>
+                                    <span class="form-check-label" for="@Model.forumIssues[i].IssueName">@Model.forumIssues[i].IssueName</span>
+                                </label>
                             }
                         </div>
-                        <button class="btn btn-accent search-btn" type="submit" value="search">Filter</button>
+                        <button class="filter-btn" type="submit" value="search">Filter</button>
                     }
                 </div>
                 <!-- End of Filter -->
             </div>
             <!-- End Left Col -->
 
-            <div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9 pt-4">
+            <div class="question-list col-sm-12 col-md-12 col-lg-9 col-xl-9 pt-4">
                 <!-- Course Details -->
                 <!-- <div id="resultsPartialView" style="display:none">-->
-                <div>
-                    @Html.Partial("QuestionListResult")
-                </div>
+                @Html.Partial("QuestionListResult")
+
                 <!-- End of Course Details -->
             </div>
             <!-- End Right Col -->
         </div>
         <!-- End Row -->
-    </section>
+    </div>
 
 </div>
-<div class="post-question-button-content">
-    <a class="post-question-button" asp-area="" asp-controller="PostQuestion" asp-action="PostQuestionIndex">
-        <div class="post-question-text">Post Question</div>
-    </a>
-</div>
+
 <script type="text/javascript">
     //if there is a better way -> delete this
     $('input[type=radio]').on('change', function () {
