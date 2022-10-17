@@ -1,4 +1,5 @@
 ﻿using ITWorks_Application.Data;
+using ITWorks_Application.DBModels;
 using ITWorks_Application.Models;
 using ITWorks_Application.ViewModels;
 using System;
@@ -91,9 +92,67 @@ namespace ITWorks_Application.Controllers.api
                 }).ToList();
             return datas;
         }
-        public List<FixData> GetFixDataByKeyword(string BrandDeviceID, string keyword)
+        public List<FixData> GetFixDataByKeyword(int BrandDeviceID, string keyword)
         {
-            List<FixData> temp = FakeDataController.list_of_fixModel.Where(x => x.BrandDeviceID == Convert.ToInt32(BrandDeviceID) && (x.FixTitle.ToLower().Contains(keyword) || x.FixDescription.ToLower().Contains(keyword))).ToList()
+            List<FixData> temp = _context.FixData.Where(x => x.BrandDeviceId == Convert.ToInt32(BrandDeviceID) && (x.FixTitle.ToLower().Contains(keyword) || x.FixDescription.ToLower().Contains(keyword)))
+                .Select(x=> new FixData()
+                {
+                    FixID = x.FixId,
+                    BrandDeviceID = Convert.ToInt32(x.BrandDeviceId),
+                    FixCategoryID = Convert.ToInt32(x.FixCateogryId),
+                    FixTitle = x.FixTitle,
+                    FixDescription = x.FixDescription,
+                }).ToList();
+            return temp;
+        }
+        public List<FixData> GetFixDataByFixCategoryID(int BrandDeviceID, int FixCategoryID)
+        {
+            List<FixData> temp = _context.FixData.Where(x => x.BrandDeviceId == BrandDeviceID && x.FixCateogryId == FixCategoryID)
+                .Select(x => new FixData()
+                {
+                    FixID = x.FixId,
+                    BrandDeviceID = Convert.ToInt32(x.BrandDeviceId),
+                    FixCategoryID = Convert.ToInt32(x.FixCateogryId),
+                    FixTitle = x.FixTitle,
+                    FixDescription = x.FixDescription,
+                }).ToList();
+            return temp;
+        }
+        public FixData GetFixData(int FixID)
+        {
+            FixDatum datum = _context.FixData.FirstOrDefault(x => x.FixId == FixID);
+            FixData data = new FixData()
+            {
+                FixID = datum.FixId,
+                BrandDeviceID = Convert.ToInt32(datum.BrandDeviceId),
+                FixCategoryID = Convert.ToInt32(datum.FixCateogryId),
+                FixTitle = datum.FixTitle,
+                FixDescription = datum.FixDescription
+            };
+            return data;
+        }
+        public List<FixInstructionData> GetFixInstruction(int FixID)
+        {
+            List<FixInstructionData> temp = _context.FixInstructionData.Where(x => x.FixId == FixID)
+                .Select(x => new FixInstructionData()
+                {
+                    FixID = Convert.ToInt32(x.FixId),
+                    InstructionID = Convert.ToInt32(x.InstructionId),
+                    SolutionStep = Convert.ToInt32(x.SolutionStep),
+                }).ToList();
+            return temp;
+        }
+        public List<InstructionData> GetInstructions(List<FixInstructionData> fixInstructionModels)
+        {
+            List<InstructionData> temp = _context.InstructionData.Select(x => new InstructionData
+            {
+                InstructionID = x.InstructionId,
+                InstructionTitle = x.InstructionTitle,
+                InstructionContent = x.InstructionContent
+            }).ToList();
+
+
+            return temp.Intersect(temp.Where(k => fixInstructionModels.Any(x => x.InstructionID == k.InstructionID))).ToList();
         }
     }
 }

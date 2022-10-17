@@ -12,6 +12,11 @@ namespace ITWorks_Application.Controllers
     public class FixSolutionController : Controller
     {
         private readonly FAQRepo repo;
+        public FixSolutionController()
+        {
+            repo = new FAQRepo();
+        }
+
         public FixSolutionViewModel fixSolutionViewModel { get; set; }
         [Route("FixSolution/FixSolutionIndex/{FixID}")]
         public IActionResult FixSolutionIndex(int FixID)
@@ -19,11 +24,11 @@ namespace ITWorks_Application.Controllers
             if (fixSolutionViewModel == null)
                 fixSolutionViewModel = new FixSolutionViewModel();
 
-            fixSolutionViewModel.fixModel = FakeDataController.list_of_fixModel.FirstOrDefault(x => x.FixID == FixID);
+            fixSolutionViewModel.fixModel = repo.GetFixData(FixID);
             if(fixSolutionViewModel.fixModel != null)
             {
-                List<FixInstructionData> fixInstructionModels = FakeDataController.list_of_fixInstruction.Where(x => x.FixID == FixID).ToList();
-                fixSolutionViewModel.fixInstruction = FakeDataController.list_of_instruction.Intersect(FakeDataController.list_of_instruction.Where(k => fixInstructionModels.Any(x => x.InstructionID == k.InstructionID))).ToList();
+                List<FixInstructionData> fixInstructionModels = repo.GetFixInstruction(FixID);
+                fixSolutionViewModel.fixInstruction = repo.GetInstructions(fixInstructionModels);
             }
 
 
