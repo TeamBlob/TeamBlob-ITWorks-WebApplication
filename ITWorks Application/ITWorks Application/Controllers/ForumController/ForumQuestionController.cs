@@ -28,28 +28,34 @@ namespace ITWorks_Application.Controllers.ForumController
             if (forumQuestionViewModel.forumQuestionModel == null)
                 return View(forumQuestionViewModel);
 
-            forumQuestionViewModel.questionAnswers = FakeDataController.list_of_forumAnswer.Where(x => x.QuestionID == QuestionID)
-                                                        .Select(x => new ForumAnswerModel()
-                                                        {
-                                                            forumAnswer = x,
-                                                            AccountName = FakeDataController.list_of_account.FirstOrDefault(y => y.AccountID == x.AccountID).AccountName,
-                                                            answerComments = FakeDataController.list_of_forumComment.Where(y => y.AnswerID == x.AnswerID).Select(z => new ForumCommentModel()
-                                                            {
-                                                                AccountName = FakeDataController.list_of_account.FirstOrDefault(y => y.AccountID == z.AccountID).AccountName,
-                                                                CommentContent = z.CommentContent,
-                                                                UploadDateTIme = z.UploadDateTIme
-                                                            }).ToList()
-                                                        }).ToList();
+            forumQuestionViewModel.questionAnswers = repo.GetForumQuestionAnswer(QuestionID);
 
             return View(forumQuestionViewModel);
         }
 
         public IActionResult PostAnswer(string QuestionID, string AnswerContent)
         {
+            ForumAnswerData data = new ForumAnswerData()
+            {
+                AccountID = LoginController.sessionAccount.AccountID,
+                QuestionID = Convert.ToInt32(QuestionID),
+                AnswerContent = AnswerContent,
+                UploadDateTIme = DateTime.Now
+            };
+            repo.PostAnswer(data);
             return RedirectToAction("ForumQuestionIndex", new { QuestionID = Convert.ToInt32(QuestionID) });
         }
         public IActionResult PostComment(string AnswerID, string CommentContent)
         {
+            ForumCommentData data = new ForumCommentData()
+            {
+                AccountID = LoginController.sessionAccount.AccountID,
+                AnswerID = Convert.ToInt32(AnswerID),
+                CommentContent = CommentContent,
+                UploadDateTIme = DateTime.Now,
+            };
+            repo.PostComment(data);
+
             return RedirectToAction("ForumQuestionIndex", new { QuestionID = forumQuestionViewModel.forumQuestionModel.Question.QuestionID });
         }
     }

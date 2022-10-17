@@ -13,7 +13,11 @@ namespace ITWorks_Application.Controllers.api
     public class ForumRepo
     {
         private readonly itworkxdevdatabaseContext _context = new itworkxdevdatabaseContext();
-
+        private readonly AccountRepo accountRepo;
+        public ForumRepo()
+        {
+            accountRepo = new AccountRepo();
+        }
         public List<ForumQuestionModel> GetAllForumQuestion()
         {
             List<ForumQuestionModel> models = new List<ForumQuestionModel>();
@@ -174,7 +178,7 @@ namespace ITWorks_Application.Controllers.api
             _context.ForumAnswerData.Add(newAnswer);
             _context.SaveChanges();
         }
-        public void PostAnswer(ForumCommentData data)
+        public void PostComment(ForumCommentData data)
         {
             var newComment = new ForumCommentDatum()
             {
@@ -185,6 +189,38 @@ namespace ITWorks_Application.Controllers.api
             };
             _context.ForumCommentData.Add(newComment);
             _context.SaveChanges();
+        }
+        public List<ForumAnswerModel> GetForumQuestionAnswer(int QuestionID)
+        {
+            List<ForumAnswerModel> model = _context.ForumAnswerData.Where(x => x.QuestionId == QuestionID)
+                .Select(x => new ForumAnswerModel
+                {
+                    forumAnswer = new ForumAnswerData()
+                    {
+                        AnswerID = x.AnswerId,
+                        QuestionID = Convert.ToInt32(x.QuestionId),
+                        AccountID = Convert.ToInt32(x.AccountId),
+                        AnswerContent = x.AnswerContent,
+                        UploadDateTIme = (DateTime)x.UploadDateTime
+                    },
+                    answerComments = GetForumAnswerComments(QuestionID)
+                }).ToList();
+
+
+
+            return model;
+        }
+        public List<ForumCommentModel> GetForumAnswerComments(int AnswerID)
+        {
+            List<ForumCommentModel> datas = _context.ForumCommentData.Where(x => x.AnswerId == AnswerID).Select(
+                y => new ForumCommentModel()
+                {
+                    AccountName = accountRepo.GetAccountName(Convert.ToInt32(y.AccountId)),
+                    CommentContent = y.CommentContent,
+                    UploadDateTIme = (DateTime)y.UploadDateTime
+                }).ToList();
+
+            return datas;
         }
     }
 }

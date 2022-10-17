@@ -22,5 +22,9 @@ namespace ITWorks_Application.Controllers.api
         
                 
         }
+        public string GetAccountName(int AccountID)
+        {
+            return _context.AccountData.FirstOrDefault(y => y.AccountId == AccountID).AccountName;
+        }
     }
 }
