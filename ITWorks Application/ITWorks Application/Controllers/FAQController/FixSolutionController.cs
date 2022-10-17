@@ -1,4 +1,5 @@
-﻿using ITWorks_Application.Models;
+﻿using ITWorks_Application.Controllers.api;
+using ITWorks_Application.Models;
 using ITWorks_Application.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,6 +11,7 @@ namespace ITWorks_Application.Controllers
 {
     public class FixSolutionController : Controller
     {
+        private readonly FAQRepo repo;
         public FixSolutionViewModel fixSolutionViewModel { get; set; }
         [Route("FixSolution/FixSolutionIndex/{FixID}")]
         public IActionResult FixSolutionIndex(int FixID)

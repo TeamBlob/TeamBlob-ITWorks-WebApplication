@@ -97,7 +97,15 @@ namespace ITWorks_Application.Data
             {
                 entity.Property(e => e.FixCateogryId).ValueGeneratedNever();
 
+                entity.Property(e => e.FixCategoryContainer).IsUnicode(false);
+
+                entity.Property(e => e.FixCategoryImage).IsUnicode(false);
+
+                entity.Property(e => e.FixCategoryImgcss).IsUnicode(false);
+
                 entity.Property(e => e.FixCategoryName).IsUnicode(false);
+
+                entity.Property(e => e.FixCategoryTxtcss).IsUnicode(false);
             });
 
             modelBuilder.Entity<FixDatum>(entity =>

@@ -15,5 +15,15 @@ namespace ITWorks_Application.DBModels
         public int FixCateogryId { get; set; }
         [StringLength(50)]
         public string FixCategoryName { get; set; }
+        [StringLength(50)]
+        public string FixCategoryContainer { get; set; }
+        [StringLength(50)]
+        public string FixCategoryImage { get; set; }
+        [Column("FixCategoryTXTCSS")]
+        [StringLength(50)]
+        public string FixCategoryTxtcss { get; set; }
+        [Column("FixCategoryIMGCSS")]
+        [StringLength(50)]
+        public string FixCategoryImgcss { get; set; }
     }
 }

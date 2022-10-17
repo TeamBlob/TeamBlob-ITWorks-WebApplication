@@ -1,4 +1,5 @@
-﻿using ITWorks_Application.Models;
+﻿using ITWorks_Application.Controllers.api;
+using ITWorks_Application.Models;
 using ITWorks_Application.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,14 +12,17 @@ namespace ITWorks_Application.Controllers
 {
     public class DeviceCategoryController : Controller
     {
-
+        private readonly FAQRepo repo;
+        public DeviceCategoryController()
+        {
+            repo = new FAQRepo();
+        }
         public IActionResult DeviceCategory()
         {
-            FAQDeviceCategoryViewModel viewModel = new FAQDeviceCategoryViewModel
+            FAQDeviceCategoryViewModel viewModel = new FAQDeviceCategoryViewModel()
             {
-                DeviceCategoryModels = FakeDataController.list_of_FAQ_Category
+                DeviceCategoryModels = repo.GetAllFAQDeviceCategory()
             };
-
             return View(viewModel);
         }
     }
